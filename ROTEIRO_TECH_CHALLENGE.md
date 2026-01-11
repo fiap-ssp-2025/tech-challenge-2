@@ -3,17 +3,29 @@
 ## CHECKLIST PRINCIPAL
 
 ### 1. Configuração do Ambiente e Projeto
+
 ### 2. Seleção e Download do Dataset
+
 ### 3. Exploração de Dados (EDA)
+
 ### 4. Pré-processamento de Dados
+
 ### 5. Análise de Correlação
+
 ### 6. Modelagem - Criação dos Modelos
+
 ### 7. Treinamento e Avaliação dos Modelos
+
 ### 8. Interpretação dos Resultados
+
 ### 9. Organização do Código e Documentação
+
 ### 10. Dockerfile e Configuração de Ambiente
+
 ### 11. Relatório Técnico
+
 ### 12. Vídeo de Demonstração
+
 ### 13. Preparação dos Entregáveis Finais
 
 ---
@@ -25,6 +37,7 @@
 **Objetivo:** Estruturar o projeto inicial e configurar o ambiente de desenvolvimento.
 
 **Ações:**
+
 - Criar estrutura de pastas do projeto (data/, notebooks/, src/, models/, results/)
 - Configurar ambiente virtual Python (venv ou conda)
 - Criar arquivo `requirements.txt` com todas as dependências
@@ -33,6 +46,7 @@
 - Criar estrutura básica do `README.md`
 
 **Dependências sugeridas:**
+
 - pandas, numpy, matplotlib, seaborn
 - scikit-learn
 - jupyter
@@ -46,6 +60,7 @@
 **Objetivo:** Escolher e obter o dataset médico para análise.
 
 **Ações:**
+
 - Escolher um dataset médico público (ex: Câncer de Mama, Diabetes)
 - Fazer download do dataset
 - Salvar na pasta `data/` do projeto
@@ -53,6 +68,7 @@
 - Definir claramente o problema a ser resolvido (ex: "Classificar se paciente tem câncer de mama maligno ou benigno")
 
 **Datasets sugeridos:**
+
 - Câncer de Mama: https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data
 - Diabetes: https://www.kaggle.com/datasets/mathchi/diabetes-data-set/data
 
@@ -63,6 +79,7 @@
 **Objetivo:** Entender as características e padrões dos dados.
 
 **Ações:**
+
 - Carregar o dataset no notebook Jupyter
 - Verificar dimensões (número de linhas e colunas)
 - Verificar tipos de dados de cada coluna
@@ -80,16 +97,15 @@
 **Objetivo:** Preparar os dados para modelagem, garantindo qualidade e formato adequado.
 
 **Ações:**
+
 - **Limpeza:**
   - Tratar valores ausentes (remover, imputar ou estratégia adequada)
   - Identificar e tratar outliers
   - Remover duplicatas (se houver)
-  
 - **Transformação:**
   - Converter variáveis categóricas em numéricas (Label Encoding ou One-Hot Encoding)
   - Normalizar/padronizar variáveis numéricas (se necessário)
   - Criar pipeline de pré-processamento em Python (usando sklearn Pipeline)
-  
 - **Separação:**
   - Separar features (X) e target (y)
   - Dividir dados em: treino (70%), validação (15%) e teste (15%)
@@ -102,6 +118,7 @@
 **Objetivo:** Identificar relações entre variáveis e features mais relevantes.
 
 **Ações:**
+
 - Calcular matriz de correlação entre variáveis numéricas
 - Visualizar matriz de correlação (heatmap)
 - Identificar features altamente correlacionadas
@@ -115,6 +132,7 @@
 **Objetivo:** Implementar pelo menos 2 algoritmos de classificação diferentes.
 
 **Ações:**
+
 - Escolher pelo menos 2 algoritmos (exemplos):
   - Regressão Logística
   - Árvore de Decisão
@@ -122,7 +140,6 @@
   - Random Forest
   - SVM
   - XGBoost
-  
 - Implementar cada modelo usando scikit-learn
 - Configurar hiperparâmetros iniciais
 - Garantir que todos os modelos usem os mesmos dados de treino/validação/teste
@@ -134,10 +151,10 @@
 **Objetivo:** Treinar os modelos e avaliar seu desempenho com métricas adequadas.
 
 **Ações:**
+
 - **Treinamento:**
   - Treinar cada modelo com conjunto de treino
   - Ajustar hiperparâmetros usando conjunto de validação (opcional: GridSearchCV)
-  
 - **Avaliação:**
   - Fazer predições no conjunto de teste
   - Calcular métricas:
@@ -156,15 +173,14 @@
 **Objetivo:** Entender como o modelo toma decisões e quais features são mais importantes.
 
 **Ações:**
+
 - **Feature Importance:**
   - Extrair importância das features (para modelos que suportam, como Random Forest)
   - Visualizar features mais importantes (gráfico de barras)
-  
 - **SHAP Values:**
   - Calcular SHAP values para interpretabilidade
   - Criar visualizações SHAP (summary plot, waterfall plot)
   - Explicar contribuição de cada feature para predições específicas
-  
 - **Análise Crítica:**
   - Discutir se o modelo pode ser usado na prática
   - Explicar limitações do modelo
@@ -178,6 +194,7 @@
 **Objetivo:** Estruturar o código de forma profissional e documentada.
 
 **Ações:**
+
 - Organizar código em notebooks Jupyter ou scripts Python
 - Adicionar comentários explicativos no código
 - Criar funções reutilizáveis quando apropriado
@@ -193,12 +210,12 @@
 **Objetivo:** Criar ambiente containerizado para facilitar execução e reprodução.
 
 **Ações:**
+
 - Criar `Dockerfile` com:
   - Imagem base Python
   - Instalação de dependências do `requirements.txt`
   - Configuração do ambiente Jupyter (se aplicável)
   - Comandos para executar o projeto
-  
 - Atualizar `README.md` com:
   - Descrição do projeto
   - Instruções de instalação (com e sem Docker)
@@ -214,6 +231,7 @@
 **Objetivo:** Documentar todo o processo, decisões e resultados de forma técnica.
 
 **Ações:**
+
 - Criar documento PDF com:
   - **Introdução:** Contexto do problema e objetivo
   - **Dataset:** Descrição do dataset escolhido e problema a resolver
@@ -241,6 +259,7 @@
 **Objetivo:** Apresentar o sistema em funcionamento de forma clara e objetiva.
 
 **Ações:**
+
 - Gravar vídeo de até 15 minutos
 - **Conteúdo do vídeo:**
   - Apresentação breve do problema
@@ -249,7 +268,6 @@
   - Mostrar resultados principais (gráficos, métricas)
   - Interpretação dos resultados
   - Conclusão
-  
 - Fazer upload no YouTube ou Vimeo
 - Configurar como "público" ou "não listado"
 - Incluir link do vídeo no README e relatório
@@ -261,24 +279,22 @@
 **Objetivo:** Consolidar todos os materiais para entrega.
 
 **Ações:**
+
 - **Verificar repositório Git:**
   - Código-fonte completo commitado
   - README.md atualizado
   - Dockerfile presente
   - Dataset ou link para download
   - Resultados (gráficos, análises) salvos
-  
 - **Verificar relatório PDF:**
   - Todas as seções preenchidas
   - Link do repositório incluído
   - Gráficos e tabelas de qualidade
   - Formatação profissional
-  
 - **Verificar vídeo:**
   - Vídeo publicado e acessível
   - Link funcionando
   - Duração dentro do limite (15 min)
-  
 - **Checklist final:**
   - [ ] Repositório Git completo e organizado
   - [ ] README.md com instruções claras
@@ -297,6 +313,7 @@
 **Objetivo:** Implementar diagnóstico usando redes neurais convolucionais para imagens médicas.
 
 **Ações:**
+
 - Escolher dataset de imagens médicas (ex: Pneumonia em Radiografias)
 - Carregar e explorar imagens
 - Pré-processar imagens (redimensionar, normalizar)
@@ -306,6 +323,7 @@
 - Documentar no relatório e vídeo
 
 **Datasets sugeridos:**
+
 - Pneumonia: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 - Câncer de Mama (imagens): https://www.kaggle.com/datasets/awsaf49/cbis-ddsm-breast-cancer-image-dataset/data
 
