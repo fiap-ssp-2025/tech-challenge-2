@@ -1,61 +1,15 @@
 """
 Script para atualizar o dicionário de campos com informações do PDF do SINAN.
 
-Este script cruza os dados do dicionário oficial (PDF) com o JSON atual e atualiza
-as descrições com as informações da coluna "Características" do PDF.
+Este script cruza os dados extraídos do dicionário oficial (PDF) com o JSON atual e
+atualiza o campo `descricao` usando o conteúdo da coluna "Características" do PDF.
+
+Fonte do PDF (já convertida em JSON):
+  - src/data/dicionario_dados_sinan_tabelas.json
 """
 
 import json
 from pathlib import Path
-
-# Mapeamento de campos do PDF com suas características (coluna "Características")
-# Baseado no Dicionário de Dados SINAN NET - Versão 5.0/Patch 5.1
-# Nota: Alguns campos do PDF têm nomes diferentes no JSON (mapeamento abaixo)
-CARACTERISTICAS_PDF = {
-    # Campos principais
-    'TP_NOT': 'Campo Obrigatório',
-    'ID_AGRAVO': 'Campo Chave. Preenchendo o código, a descrição é preenchida automaticamente, e vice-versa. Ao exportar, é retirado o ponto',
-    'DT_NOTIFIC': 'Campo Chave',
-    'SEM_NOT': 'Preenchida automaticamente, a partir da data de notificação (AAAASS)',
-    'NU_ANO': 'Variável interna preenchida pelo sistema a partir da data de notificação',
-    'SG_UF_NOT': 'Campo Obrigatório',
-    'ID_MUNICIP': 'Campo Chave. Preenchendo o código, a descrição é preenchida automaticamente, e vice-versa',
-    'ID_UNIDADE': 'Campo Obrigatório. Ao preencher o código, a descrição é preenchida automaticamente e vice-versa',
-    'DT_OCOR': 'Campo Obrigatório. Data menor ou igual (<=) a Data de Notificação',
-    'SEM_PRI': 'Preenchida automaticamente, a partir da data de primeiros sintomas data do diagnóstico. (AAAASS)',
-    
-    # Autor da violência
-    'AUTOR_SEXO': 'Campo obrigatório',
-    'AUTOR_ALCO': '',  # Sem características específicas no PDF visível
-    'CICL_VID': 'Campo obrigatório',  # No JSON é CICL_VID, no PDF é CICL_VID_AUTOR
-    
-    # Encaminhamentos
-    'ENC_SAUDE': 'Campo obrigatório',
-    'ASSIST_SOC': 'Campo obrigatório',
-    'REDE_EDUCA': 'Campo obrigatório',
-    'ATEND_MULH': 'Campo obrigatório',
-    'CONS_TUTEL': 'Campo obrigatório',
-    'CONS_IDO': 'Campo obrigatório',
-    'DELEG_IDOS': 'Campo obrigatório',  # No JSON é DELEG_IDOS, no PDF é DELEG_IDOSO
-    'DIR_HUMAN': 'Campo obrigatório',
-    'MPU': 'Campo obrigatório',
-    'DELEG_CRIA': 'Campo obrigatório',
-    'DELEG_MULH': 'Campo obrigatório',
-    'DELEG': 'Campo obrigatório',
-    'INFAN_JUV': 'Campo obrigatório',
-    'DEFEN_PUBL': 'Campo obrigatório',
-    
-    # Violência relacionada ao trabalho
-    'REL_TRAB': 'Campo Essencial. Se categoria=2 ou 9 pular para o campo 68. Circunstância da lesão',
-    'REL_CAT': 'Categoria=8 se campo 66. Violência relacionada ao trabalho for = 2 ou 9. Se campo 66. Violência relacionada ao trabalho for = 1 não permitir a categoria 8. Não se aplica',
-    
-    # Outros campos importantes
-    'CIRC_LESAO': 'Campo Essencial',
-    'DT_ENCERRA': 'Campo >= data da notificação',
-    'REL_OUTROS': 'Campo obrigatório. Se categoria=2 ou 9, pular para campo 62. Sexo do provável autor da agressão',
-    'REL_ESPEC': 'Campo Obrigatório se campo 61. Relação com a pessoa atendida – Outros =1'
-}
-
 
 def atualizar_dicionario_com_caracteristicas():
     """
@@ -65,52 +19,47 @@ def atualizar_dicionario_com_caracteristicas():
     base_path = Path(__file__).parent.parent.parent
     json_path = base_path / 'src' / 'data' / 'dicionario_campos_sinan.json'
     py_path = base_path / 'src' / 'data' / 'dicionario_campos_sinan.py'
+    pdf_json_path = base_path / 'src' / 'data' / 'dicionario_dados_sinan_tabelas.json'
     
     # Carrega o JSON atual
     print(f"📂 Carregando JSON: {json_path}")
     with open(json_path, 'r', encoding='utf-8') as f:
         dicionario = json.load(f)
+
+    # Carrega as tabelas extraídas do PDF (já em JSON)
+    print(f"📂 Carregando tabelas do PDF (JSON): {pdf_json_path}")
+    with open(pdf_json_path, 'r', encoding='utf-8') as f:
+        pdf_data = json.load(f)
+    linhas = pdf_data.get('linhas', [])
     
     # Contadores
     atualizados = 0
-    nao_encontrados = []
+    nao_encontrados = set()
+    pulados_sem_caracteristicas = 0
     
     # Atualiza as descrições com as características do PDF
     print("\n🔄 Atualizando descrições com características do PDF...")
     print("="*80)
-    
-    for campo, caracteristicas in CARACTERISTICAS_PDF.items():
-        if campo in dicionario:
-            # Se já tem uma descrição completa, adiciona as características
-            descricao_atual = dicionario[campo].get('descricao', '')
-            
-            # Se a descrição atual é apenas o placeholder, substitui completamente
-            if 'Descrição a ser preenchida conforme dicionário SINAN' in descricao_atual:
-                if caracteristicas:
-                    # Se tem características, usa a descrição existente (se houver) + características
-                    nome_campo = dicionario[campo].get('nome', campo)
-                    dicionario[campo]['descricao'] = f"{nome_campo}. {caracteristicas}"
-                else:
-                    # Mantém o placeholder se não houver características
-                    pass
+
+    for item in linhas:
+        # Requisito: copiar "Descrição" (da tabela do PDF) para o campo `descricao` do dicionário
+        descricao_pdf = (item.get('Descrição') or '').strip()
+        if not descricao_pdf:
+            pulados_sem_caracteristicas += 1
+            continue
+
+        # DBF pode vir com múltiplos códigos separados por \n
+        dbf_raw = (item.get('DBF') or '').strip()
+        dbf_codes = [c.strip() for c in dbf_raw.split('\n') if c.strip()]
+        if not dbf_codes:
+            continue
+
+        for code in dbf_codes:
+            if code in dicionario:
+                dicionario[code]['descricao'] = descricao_pdf
+                atualizados += 1
             else:
-                # Se já tem descrição, adiciona as características no final
-                if caracteristicas:
-                    if caracteristicas not in descricao_atual:
-                        dicionario[campo]['descricao'] = f"{descricao_atual}. {caracteristicas}"
-            
-            # Atualiza obrigatorio baseado nas características
-            if 'Campo Obrigatório' in caracteristicas or 'Campo obrigatório' in caracteristicas:
-                dicionario[campo]['obrigatorio'] = True
-            elif 'Campo Chave' in caracteristicas:
-                dicionario[campo]['obrigatorio'] = True
-            elif 'Campo Essencial' in caracteristicas:
-                dicionario[campo]['obrigatorio'] = False  # Essencial não é obrigatório
-            
-            atualizados += 1
-            print(f"✅ {campo}: Atualizado")
-        else:
-            nao_encontrados.append(campo)
+                nao_encontrados.add(code)
     
     # Salva o JSON atualizado
     print(f"\n💾 Salvando JSON atualizado...")
@@ -126,12 +75,14 @@ def atualizar_dicionario_com_caracteristicas():
     print("📊 RESUMO DA ATUALIZAÇÃO")
     print("="*80)
     print(f"✅ Campos atualizados: {atualizados}")
+    print(f"⏭️  Linhas do PDF puladas (sem Características): {pulados_sem_caracteristicas}")
     if nao_encontrados:
-        print(f"⚠️  Campos não encontrados no JSON: {len(nao_encontrados)}")
-        for campo in nao_encontrados[:10]:  # Mostra apenas os primeiros 10
+        nao_encontrados_list = sorted(nao_encontrados)
+        print(f"⚠️  Códigos DBF não encontrados no JSON: {len(nao_encontrados_list)}")
+        for campo in nao_encontrados_list[:10]:  # Mostra apenas os primeiros 10
             print(f"   - {campo}")
-        if len(nao_encontrados) > 10:
-            print(f"   ... e mais {len(nao_encontrados) - 10} campos")
+        if len(nao_encontrados_list) > 10:
+            print(f"   ... e mais {len(nao_encontrados_list) - 10} campos")
     print(f"📁 Arquivo JSON: {json_path}")
     print(f"📁 Arquivo Python: {py_path}")
     print("="*80)

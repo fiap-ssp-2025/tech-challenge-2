@@ -1,0 +1,1244 @@
+{
+  "fonte_pdf": "/Users/matias/Projetos/fiap/tech-challenge-1/docs/dicionario_dados_sinan.pdf",
+  "colunas": [
+    "Nome do Campo",
+    "Campo",
+    "Tipo",
+    "Categoria",
+    "Descrição",
+    "Características",
+    "DBF"
+  ],
+  "linhas": [
+    {
+      "Nome do Campo": "Nº da Notificação",
+      "Campo": "nu_notificacao",
+      "Tipo": "varchar2(7)",
+      "Categoria": "1 – Negativa\n2 – Individual",
+      "Descrição": "Número da Notificação",
+      "Características": "Campo Chave para\nidentificação do registro\nsistema",
+      "DBF": "NU_NOTIFIC"
+    },
+    {
+      "Nome do Campo": "1. Tipo de Notificação",
+      "Campo": "tp_notificacao",
+      "Tipo": "varchar2(1)",
+      "Categoria": "3 – Surto\n4 – Agregado\nTabela de agravos\ncom códigos (classificação\ninternacional de doenças\n10) e nomes dos agravos\nclassificados como\ncompulsória ( nacional,",
+      "Descrição": "Identifica o tipo da\ndo sistema\n–CID\nNome e código do\nnotificação\nnotificado segundo\nestadual",
+      "Características": "notificação Campo Obrigatório\nCampo Chave\nagravo Preenchendo o código, a\nCID-10 descrição é preenchida",
+      "DBF": "TP_NOT"
+    },
+    {
+      "Nome do Campo": "2. Agravo",
+      "Campo": "co_cid",
+      "Tipo": "",
+      "Categoria": "ou municipal) e as\nfebre hemorragia\naguda;respiratória\naguda; sanguinolenta;\nneurológica aguda;\nrenal aguda; outras",
+      "Descrição": "(Centro Colaborador\nsíndromes (\npara a Classificação\nem Português)\naguda; diarréia\ninsuficiência\nsíndromes",
+      "Características": "da OMS automaticamente, e vice-\nde Doenças versa;\nAo exportar, é retirado o\nponto",
+      "DBF": "ID_AGRAVO"
+    },
+    {
+      "Nome do Campo": "3. Data da Notificação\nSemana epidemiológica",
+      "Campo": "dt_notificacao\nds_semana_notifi",
+      "Tipo": "date",
+      "Categoria": "dd/mm/aaaa\nSemanas do calendário",
+      "Descrição": "Data de preenchimento\nde notificação.\nSemana epidemiológica",
+      "Características": "Campo Chave\nda ficha\nPreenchida\nautomaticamente, a partir\nque o",
+      "DBF": "DT_NOTIFIC"
+    },
+    {
+      "Nome do Campo": "da notificação",
+      "Campo": "cacao",
+      "Tipo": "varchar2(6)",
+      "Categoria": "epidemiológico padronizado.",
+      "Descrição": "caso foi notificado.",
+      "Características": "da data de notificação",
+      "DBF": "SEM_NOT"
+    },
+    {
+      "Nome do Campo": "(campo interno)\n(campo interno)",
+      "Campo": "varchar",
+      "Tipo": "varchar(4)",
+      "Categoria": "Tabela com Códigos",
+      "Descrição": "Ano da notificação\nSigla da Unidade\nonde está localizada\nde saúde (ou outra\ne siglas",
+      "Características": "(AAAASS)\nVariável interna\npreenchida pelo sistema\npartir da data de\nnotificação\nFederativa\na unidade\nfonte",
+      "DBF": "NU_ANO\nAAAASS"
+    },
+    {
+      "Nome do Campo": "4. UF de Notificação\n5. Município",
+      "Campo": "co_uf_notificacao\nco_municipio_not",
+      "Tipo": "varchar2(2)",
+      "Categoria": "padronizados pelo\nTabela com Código",
+      "Descrição": "Código do município\ncódigo na tabela.\n(ou outra fonte notificadora)\ne nome\nIBGE\nlocalizada a unidade\nnotificação. A sigla\nnotificadora) que\nvariável que está",
+      "Características": "realizou a Campo Obrigatório\né uma\nassociada ao\nonde está Campo Chave\nde saúde\nque Preenchendo o código, a",
+      "DBF": "SG_UF_NOT"
+    },
+    {
+      "Nome do Campo": "Notificação",
+      "Campo": "ificacao",
+      "Tipo": "varchar2(6)",
+      "Categoria": "dos municípios do\nIBGE (tabela municipi.dbf)\nCampo com código",
+      "Descrição": "cadastro do\nrealizou a notificação.\nestá associado ao\ntabela de municípios.\nRegional de saúde\nda regional\nlocalizado o município",
+      "Características": "O nome descrição é preenchida\ncódigo na automaticamente, e vice-\nversa\nonde está Sistema relaciona o campo\nda município de notificação",
+      "DBF": "ID_MUNICIP"
+    },
+    {
+      "Nome do Campo": "(campo interno)\n6. Unidade Notificadora",
+      "Campo": "varchar2\ntp_unidade_notifi",
+      "Tipo": "varchar2(4)",
+      "Categoria": "de saúde da tabela\ndo sistema\n1-Unidade de Saúde\n2- Unidade de Assistência\nSocial\n3-Estabelecimento\n4- Conselho Tutelar",
+      "Descrição": "de município\nunidade de saúde\nnotificadora\nde Ensino\nSetor de atuação da",
+      "Características": "ou outra fonte com o campo regional da\ntabela de municípios\nCampo Obrigatório\nSe for igual (=) 1. Unidade\nde Saúde ou 7. Outros,\npular para o campo 8.\nUnidade de Saúde e\nunidade preencher o campo 7.",
+      "DBF": "ID_REGIONA"
+    },
+    {
+      "Nome do Campo": "",
+      "Campo": "cacao",
+      "Tipo": "",
+      "Categoria": "5-Unidade de Saúde\n6-Centro Especializado\nAtendimento à Mulher\n7-Outros",
+      "Descrição": "notificadora\nIndígena\nde",
+      "Características": "Nome da Unidade\nNotificadora\nautomaticamente com a\ninformação digitada no\ncampo 8. Unidade de\nSaúde.",
+      "DBF": "TP_UNI_EXT"
+    },
+    {
+      "Nome do Campo": "7. Nome da Unidade\nNotificadora\n7.1 Código",
+      "Campo": "no_unidade_not",
+      "Tipo": "varchar2(15,0)",
+      "Categoria": "Código e nome das\ncadastros da Saúde\nMDS, MEC, SDH,\nIndígena e SPM",
+      "Descrição": "Nome completo e\n(CNES),\nnotificação do caso\nSaúde\ntabelas dos\nunidade de que realizou",
+      "Características": "Campo Obrigatório se\ncampo 6. Unidade\nNotificadora for\npreenchido com 2.\nUnidade de Assistencia\nSocial, 3. Estabelecimento\nde Ensino, 4. Conselho\ncódigo da Tutelar, 5. Unidade de\na Saúde Indígena ou 6.\nCentro Especializado de\nAtendimento à Mulher.",
+      "DBF": "NM_UNI_EXT"
+    },
+    {
+      "Nome do Campo": "8. Unidade de\n8.1 Código CNES",
+      "Campo": "co_unidade_notifi\ncacao",
+      "Tipo": "number(7,0)",
+      "Categoria": "Código e nome da\ncadastro Nacional\nEstabelecimento de",
+      "Descrição": "tabela do Nome completo e\nde unidade de saúde\nSaúde abrangência da unidade",
+      "Características": "código da\nAo preencher o código,\nda área de\ndescrição é preenchida\nautomaticamente e vice-",
+      "DBF": "ID_UNIDADE"
+    },
+    {
+      "Nome do Campo": "9. Data da ocorrência\nda violência",
+      "Campo": "dt_ocor_viol",
+      "Tipo": "date",
+      "Categoria": "(CNES)\ndd/mm/aaaa",
+      "Descrição": "Data da ocorrência\nnotificadora",
+      "Características": "versa.\nCampo Obrigatório\nda violência\nData menor ou igual (<=)",
+      "DBF": "CNES_NOT"
+    },
+    {
+      "Nome do Campo": "Semana epidemiológica\ndos primeiros",
+      "Campo": "sintomas\nds_semana_sinto",
+      "Tipo": "",
+      "Categoria": "Semanas do calendário",
+      "Descrição": "Semana epidemiológica",
+      "Características": "Data de Notificação\nPreenchida\nautomaticamente, a partir\ndos da data de primeiros",
+      "DBF": "DT_OCOR"
+    },
+    {
+      "Nome do Campo": "diagnósticos.\ninterno)",
+      "Campo": "campo\nma",
+      "Tipo": "varchar2(6)",
+      "Categoria": "epidemiológico padronizado.",
+      "Descrição": "números sintomas.",
+      "Características": "sintomas data do\ndiagnostico.",
+      "DBF": "SEM_PRI"
+    },
+    {
+      "Nome do Campo": "10. Nome do Paciente",
+      "Campo": "no_nome_pacient",
+      "Tipo": "varchar2(70)",
+      "Categoria": "",
+      "Descrição": "Nome completo do\n(sem abreviações)",
+      "Características": "(AAAASS)\npaciente Campo Obrigatório",
+      "DBF": "NM_PACIENT\nAAAASS"
+    },
+    {
+      "Nome do Campo": "11. Data de nascimento",
+      "Campo": "dt_nascimento",
+      "Tipo": "date",
+      "Categoria": "dd/mm/aaaa\nA composição da\nobedece o seguinte\ndígito:\n1. Hora\n2. Dia",
+      "Descrição": "Data de nascimento\nvariável\ncritério: 1o quando não há data\nnascimento a idade\ndigitada segundo\nfornecida pelo paciente",
+      "Características": "Campo Obrigatório\nCaso a idade não seja\npreenchida\ndo paciente\nUma vez preenchido é,\ncalculada automaticamente\na idade.\nCampo Obrigatório\nCaso a data de nascimento\nnão esteja preenchida\nPreenchido\nautomaticamente se Data\nde nascimento for\nde\npreenchida\ndeve ser\ninformação\nCalculada entre Data de\ncomo",
+      "DBF": "DT_NASC"
+    },
+    {
+      "Nome do Campo": "12. Idade",
+      "Campo": "nu_idade",
+      "Tipo": "number(4)",
+      "Categoria": "3. Mês\n4. Ano\nEx: 3009 – nove meses,\ndezoito anos\nM- Masculino",
+      "Descrição": "data da ocorrência\n4018 – aparente.\naquela referida por\ndesse dado é registrada",
+      "Características": "nascimento e Data de\nocasião da\nOcorrência ;\nou na falta\na idade\nCampo composto pela\nunidade de medida de\ntempo e numero da idade.\n- Se campo < 4007\n(7 anos), campo\nescolaridade é\npreenchido com\n10- Não se aplica.\nCampo Obrigatório",
+      "DBF": "NU_IDADE_N"
+    },
+    {
+      "Nome do Campo": "13. Sexo",
+      "Campo": "tp_sexo",
+      "Tipo": "varchar2(1)",
+      "Categoria": "F- Feminino\nI- Ignorado\nGestante\n1. 1º Trimestre\n2. 2º Trimestre\n3. 3º Trimestre",
+      "Descrição": "Sexo do paciente",
+      "Características": "Se Sexo = Masculino,\ndesabilitar o campo\nGestante;\nCampo Obrigatório se\nsexo = F\nSe Sexo=Masculino ou\nidade menor ou igual a 10",
+      "DBF": "CS_SEXO"
+    },
+    {
+      "Nome do Campo": "14. Gestante",
+      "Campo": "tp_gestante",
+      "Tipo": "varchar2(1)",
+      "Categoria": "4. Idade gestacional\n5. Não\n6. Não se aplica\n9. Ignorado",
+      "Descrição": "Idade gestacional\nignorada",
+      "Características": "da paciente.\nanos, o campo é\npreenchido\nautomaticamente com 6\nNão se Aplica;",
+      "DBF": "CS_GESTANT"
+    },
+    {
+      "Nome do Campo": "15. Raça/Cor",
+      "Campo": "tp_raca_cor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1- branca\n2- preta\n3- amarela\n4- parda\n5- indígena\n9 Ignorado\n43 Analfabeto\n1. 1ª a 4ª série incompleta\nEF\n2. 4ª série completa\nantigo 1° grau)\n3. 5ª à 8ª série incompleta\nEF (antigo ginásio\ngrau)\n4. Ensino fundamental\ncompleto (antigo",
+      "Descrição": "Considera-se cor\ndeclarada pela pessoa.\n1. branca\n2. preta\n3. amarela (pessoa\ndeclarou de raça\n4. parda (pessoa\ndeclarou mulata,\ncafuza, mameluca\nmestiça de preto\npessoa de outra\n5. indígena (pessoa\ndeclarou indígena\ndo\ndo EF (\ndo\nou 1°\nSérie e grau que a\nginásio ou freqüentando ou freqüentou",
+      "Características": "ou raça\nque se\namarela)\nque se Campo Essencial\ncabocla,\nou\ncom\ncor ou raça)\nque se\nou índia)\nCampo Essencial\nPreenchido\nautomaticamente com a\npessoa está Categoria 10-não se aplica\nquando idade menor a 7",
+      "DBF": "CS_RACA"
+    },
+    {
+      "Nome do Campo": "16. Escolaridade\n17. Nº. Cartão",
+      "Campo": "tp_escolaridade\nnu_cartao_sus",
+      "Tipo": "varchar2(2)",
+      "Categoria": "5. Ensino médio\n(antigo colegial\n6. Ensino médio\n(antigo colegial\n7. Educação superior\nincompleta\n8. Educação superior\ncompleta\n9. Ignorado\n10. Não se aplica",
+      "Descrição": "incompleto concluída com aprovação\nou 2° grau) grau de instrução\ncompleto por ocasião da notificação.\nou 2° grau)\nNúmero do cartão\nÚnico de Saúde (SUS)\npaciente",
+      "Características": "ou\ndo paciente - Quando caso notificado\n7 anos, campo não pode\nser preenchido com\ncategoria 10-não se aplica.\n.\ndo Sistema\ndo",
+      "DBF": "ID_CNS_SUS\nSUS"
+    },
+    {
+      "Nome do Campo": "18. Nome da mãe\n19. UF",
+      "Campo": "no_nome_mae\nco_uf_residencia",
+      "Tipo": "varchar2(60)",
+      "Categoria": "Tabela com Códigos",
+      "Descrição": "paciente (sem abreviações)\ne siglas Sigla da Unidade",
+      "Características": "Campo Essencial\nFederada de Campo Obrigatório se",
+      "DBF": "SG_UF"
+    },
+    {
+      "Nome do Campo": "20. Município\nresidência",
+      "Campo": "co_municipio_res\nidencia",
+      "Tipo": "varchar2(6)",
+      "Categoria": "padronizados pelo\nmunicipi.dbf)\nTabela com Códigos\npadronizados pelo\nCampo com código",
+      "Descrição": "Código do município\nao código na tabela.\nda regional\ne nomes residência do caso\nIBGE (tabela residência do paciente\nIBGE nome está associado\nlocalizado o município\nna tabela de municípios.\nocasião da notificação.\nRegional de saúde\numa variável que",
+      "Características": "por residente no Brasil.\nA sigla é\nestá associada Ao digitar sigla da UF, o\ncampo País é preenchido\nautomaticamente com\n“Brasil”.\nSe nenhuma UF for\nselecionada, o sistema pula\nautomaticamente para\nseleção de outro país que\nnão o Brasil.\nCampo Obrigatório\nquando UF é digitada.\nSão exibidos somente os\nMunicípios pertencentes\nUF selecionada no campo\nde anterior.\nnotificado. O\nao código Permite digitação do nome\ndo município ou do código\nIBGE.\nQuando digitado o nome,\ncódigo é preenchido\nautomaticamente e vice-\nversa.\nonde está Sistema relaciona o campo\nde município de notificação",
+      "DBF": "ID_MN_RESI"
+    },
+    {
+      "Nome do Campo": "(campo interno)",
+      "Campo": "co_distrito_reside",
+      "Tipo": "varchar2(4)",
+      "Categoria": "de saúde da tabela\ndo sistema\nCódigos e nomes\nsegundo Tabela disponibilizada",
+      "Descrição": "Nome e respectivo\nde município\ndistrito de residência\nocasião da notificação\npadronizados\nresidência do paciente",
+      "Características": "por com o campo regional da\ntabela de municípios\nCampo Essencial\ncódigo do Filtra apenas os distritos\ndo pertencentes ao Município",
+      "DBF": "ID_RG_RESI"
+    },
+    {
+      "Nome do Campo": "21. Distrito",
+      "Campo": "ncia",
+      "Tipo": "varchar(9)",
+      "Categoria": "pelo sistema para\npelo gestor municipal",
+      "Descrição": "cadastramento\npaciente por ocasião\ndo Sinan\nnotificação.",
+      "Características": "da selecionado no campo\nanterior.",
+      "DBF": "ID_DISTRIT"
+    },
+    {
+      "Nome do Campo": "22. Bairro",
+      "Campo": "co_bairro_residen",
+      "Tipo": "number(8)",
+      "Categoria": "Códigos seqüenciais",
+      "Descrição": "da tabela Código do bairro",
+      "Características": "de residência Campo Essencial",
+      "DBF": "ID_BAIRRO"
+    },
+    {
+      "Nome do Campo": "22. Nome do Bairro\n23. Logradouro",
+      "Campo": "cia\nno_bairro_residen\nrua\nco_logradouro_re",
+      "Tipo": "varchar2(60)",
+      "Categoria": "de localidade\nTipo e nome do logradouro\ndigitado na entrada",
+      "Descrição": "Identificação do tipo\nNome do bairro de\nBairros pertencentes\ncampo anterior.\nde dados ou, do logradouro\ndo paciente por ocasião\nMunicípio selecionado\nnotificação.\nrua, travessa, etc.)\nSerão exibidos apenas",
+      "Características": "da\nSe existir bairro cadastrado\nos será gravado o código do\nao bairro no banco.\nno\nSe o bairro não estiver\ncadastrado na tabela\nmunicipal do Sinan será\nresidência gravado o nome digitado\nno campo Bairro e não será\ngravado nenhum código.\nCampo Essencial\n(avenida,\ntítulo e nome Se o logradouro for de\nmunicípio diferente do",
+      "DBF": "NM_BAIRRO"
+    },
+    {
+      "Nome do Campo": "avenida...)",
+      "Campo": "sidencia",
+      "Tipo": "number(8)",
+      "Categoria": "se disponível selecionado\ntabela de logradouros\nmunicípio (código",
+      "Descrição": "Identificação do tipo\ndo logradouro\ndo residência do paciente\ne descrição) ocasião da notificação\nem Dados do endereço\nrua, travessa, etc.)",
+      "Características": "de município de residência,\npor será gravado o nome\ndigitado no campo e não\nserá gravado nenhum\ncódigo.\n(avenida,\ntítulo e nome Campo Essencial",
+      "DBF": "ID_LOGRADO"
+    },
+    {
+      "Nome do Campo": "24. Número do",
+      "Campo": "varchar2",
+      "Tipo": "varchar2(60)",
+      "Categoria": "Descrição digitada\nhá tabela no sistema.",
+      "Descrição": "quando não\nDados do endereço\nresidência do paciente\nocasião da notificação\netc.).\nNº. do logradouro\nou do edifício)",
+      "Características": "de Esse campo será digitado\npor quando não houver\n(av., rua, Logradouro\n(nº. da casa",
+      "DBF": "NM_LOGRAD"
+    },
+    {
+      "Nome do Campo": "logradouro",
+      "Campo": "nu_residencia",
+      "Tipo": "varchar2(6)",
+      "Categoria": "",
+      "Descrição": "Dados do endereço\nresidência do paciente\nocasião da notificação\nComplemento do\n(ex. Bloco D, apto.",
+      "Características": "de Campo Essencial\npor\nlogradouro\ncasa, etc.)",
+      "DBF": "NU_NUMERO"
+    },
+    {
+      "Nome do Campo": "25. Complemento\nlogradouro",
+      "Campo": "ds_complemento_\nresidencia",
+      "Tipo": "varchar2(30)",
+      "Categoria": "",
+      "Descrição": "Dados do endereço\nresidência do paciente\nocasião da notificação",
+      "Características": "de Campo Essencial\npor",
+      "DBF": "DS_COMPL"
+    },
+    {
+      "Nome do Campo": "26. Geo campo",
+      "Campo": "co_geo_campo_1",
+      "Tipo": "number(8)",
+      "Categoria": "Selecionado em tabela\nlocalidade (código\nTabela com Códigos\npadronizados segundo\ndisponibilizada pelo\npara importação pelo\nmunicipal do Sinan\ngeoreferenciada\nSelecionado em tabela\nlocalidade (código\nTabela com Códigos\npadronizados segundo",
+      "Descrição": "de\ne descrição)\ne nomes\nTabela\nCampo para Geo-\nsistema\nReferenciamento\ngestor\nde tabela\nde\ne descrição)\ne nomes\nTabela Campo para Geo-",
+      "Características": "",
+      "DBF": "ID_GEO1"
+    },
+    {
+      "Nome do Campo": "27. Geo campo",
+      "Campo": "co_geo_campo_2\nds_referencia_resi",
+      "Tipo": "number(8)",
+      "Categoria": "disponibilizada pelo\npara importação pelo\nmunicipal do Sinan\ngeoreferenciada",
+      "Descrição": "sistema Referenciamento\ngestor\nde tabela\nPonto de referência",
+      "Características": "para",
+      "DBF": "ID_GEO2"
+    },
+    {
+      "Nome do Campo": "28. Ponto de referencia",
+      "Campo": "dencia\nnu_cep_residenci",
+      "Tipo": "varchar2(70)",
+      "Categoria": "",
+      "Descrição": "facilitar a localização\nresidência do paciente",
+      "Características": "da Campo Essencial",
+      "DBF": "DS_REF_RES"
+    },
+    {
+      "Nome do Campo": "29. CEP de residência",
+      "Campo": "nu_ddd_residenci",
+      "Tipo": "varchar2(8)",
+      "Categoria": "",
+      "Descrição": "Código de residência\nCEP de residência",
+      "Características": "do paciente. Campo Essencial\ndo",
+      "DBF": "NU_CEP\nCEP"
+    },
+    {
+      "Nome do Campo": "30. (DDD)",
+      "Campo": "nu_telefone_resid",
+      "Tipo": "varchar2(2)",
+      "Categoria": "",
+      "Descrição": "paciente\nTelefone de residência",
+      "Características": "Campo Essencial\ndo",
+      "DBF": "DDD"
+    },
+    {
+      "Nome do Campo": "30. Telefone",
+      "Campo": "encia\ntp_zona_residenci",
+      "Tipo": "varchar2(9)",
+      "Categoria": "1. urbana\n2. rural",
+      "Descrição": "paciente\nZona de residência",
+      "Características": "Campo Essencial\ndo paciente",
+      "DBF": "FONE"
+    },
+    {
+      "Nome do Campo": "31. Zona\n32. País (se residente",
+      "Campo": "co_pais_residenci",
+      "Tipo": "varchar2(1)",
+      "Categoria": "3. periurbana\n9. ignorado\nTabela com código",
+      "Descrição": "por ocasião da notificação\ne descrição País onde residia",
+      "Características": "Campo Essencial\nCampo Obrigatório\no paciente por Se UF for digitada este",
+      "DBF": "ZONA"
+    },
+    {
+      "Nome do Campo": "Não Listar/ Não",
+      "Campo": "tp_duplicidade",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Não é duplicidade\n2. Duplicidade (não",
+      "Descrição": "(não listar) Identifica duplicidade\ncontar)",
+      "Características": "atribuídas pelo usuário do\nsistema na rotina de",
+      "DBF": "NDUPLIC_N"
+    },
+    {
+      "Nome do Campo": "Vinculação\n33. Nome social",
+      "Campo": "st_vincula",
+      "Tipo": "varchar2(1)",
+      "Categoria": "0 ou branco – Não\n1 – Vinculado\nCategorias da tabela",
+      "Descrição": "Informar a atividade\n(Indicar\natividade econômica\ndesempregado. O\nIndica se a notificação\ninformal ou autônomo\npelo paciente no setor\nquando paciente for\núltima atividade exercida\nVinculado vinculada",
+      "Características": "duplicidade para identificar\nduplicidades que não\ndevem ser listadas no\nrelatório de duplicidade\nnão devem ser computadas\nna incidência do agravo.\nQuando o registro estava\nmarcado para não listar\nretornou para a rotina de\nduplicidade, é atribuída\ncategoria 0.\nCategoria 1 atribuída pelo\nfoi\nsistema após vinculação\nnotificações de hanseníase\nou tuberculose.\nexercida\nformal,\nou sua\nramo de\ndo paciente",
+      "DBF": "IN_VINCULA"
+    },
+    {
+      "Nome do Campo": "34. Ocupação",
+      "Campo": "co_cbo_ocupacao",
+      "Tipo": "Varchar2(6)",
+      "Categoria": "aqui qual a tabela",
+      "Descrição": "que é\nrefere-se as atividades",
+      "Características": "",
+      "DBF": "ID_OCUPA_N"
+    },
+    {
+      "Nome do Campo": "35. Situação conjugal",
+      "Campo": "tp_situacao_conju\ngal",
+      "Tipo": "varchar2(1)",
+      "Categoria": "utilizado no Sinan\n1. Solteiro\n2. Casado/ União\nconsensual\n3. Viúvo\n4. Separado\n8. Não se aplica",
+      "Descrição": "NET)\neconômicas desenvolvidas\nprocessos de produção\nprimário (agricultura\nextrativismo); secundário\n(indústria) ou terciário\ne comércio).\nSituação conjugal",
+      "Características": "nos\ndo setor\ne\n(serviços\nCampo Essencial\ndo paciente Categoria 8 se idade do\npaciente for <=9 anos",
+      "DBF": "SIT_CONJUG\nNET"
+    },
+    {
+      "Nome do Campo": "36. Orientação\n37. Identidade",
+      "Campo": "sexual\nual",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Heterossexual\n2. Homossexual\n(gay/lésbica)\n3. Bissexual\n8. Não se aplica\n9. Ignorado\n1. Travesti\n2. Transexual\n3. Transexual",
+      "Descrição": "Orientação sexual\nMulher\nHomem Identidade de gênero",
+      "Características": "Campo Obrigatório se\n>=10 anos\ndo paciente Categoria (8) Não se\nAplica se idade do\npaciente for <=9 anos\nCampo Obrigatório se\n>=10 anos\nCategoria (8) Não se\nAplica se idade do\ndo",
+      "DBF": "ORIENT_SEX"
+    },
+    {
+      "Nome do Campo": "Gênero\n38. Possui algum",
+      "Campo": "identidade_genero\ntipo\ntp_deficiencia_tra",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "paciente",
+      "Características": "paciente for <=9 anos\nSe o campo 13 Sexo for\nigual (=) a Feminino (F)\nnão permitir a categoria\nTravesti\nCampo Essencial",
+      "DBF": "IDENT_GEN"
+    },
+    {
+      "Nome do Campo": "deficiência/ transtorno",
+      "Campo": "nstorno\ntp_deficiencia_fis",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Se o paciente possui\nde deficiência/ transtorno\nSe o paciente possui",
+      "Características": "algum tipo Se 2 ou 9, pular para o\ncampo 40 (UF de\nocorrência)\nCampo Essencial\nSe campo 38 for = 2 ou\npreencher\nautomaticamente com\nalgum tipo categoria = 8 (não se",
+      "DBF": "DEF_TRANS"
+    },
+    {
+      "Nome do Campo": "39. Deficiência\n39. Deficiência",
+      "Campo": "ica\ntp_deficiencia_int",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "de deficiência física\nSe o paciente possui",
+      "Características": "aplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).\nCampo Essencial\nalgum tipo",
+      "DBF": "DEF_FISICA"
+    },
+    {
+      "Nome do Campo": "intelectual",
+      "Campo": "electual",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado",
+      "Descrição": "de deficiência mental",
+      "Características": "Se campo 38 for = 2 ou\npreencher",
+      "DBF": "DEF_MENTAL"
+    },
+    {
+      "Nome do Campo": "39. Deficiência",
+      "Campo": "tp_deficiencia_vis\nvisual\nual\ntp_deficiencia_au",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Sim\n2. Não\n8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Se o paciente possui\nde deficiência visual\nSe o paciente possui",
+      "Características": "automaticamente com\ncategoria = 8 (não se\naplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).\nCampo Essencial\nSe campo 38 for = 2 ou\npreencher\nautomaticamente com\nalgum tipo\ncategoria = 8 (não se\naplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).\nCampo Essencial\nSe campo 38 for = 2 ou\npreencher\nautomaticamente com\nalgum tipo",
+      "DBF": "DEF_VISUAL"
+    },
+    {
+      "Nome do Campo": "39. Deficiência",
+      "Campo": "auditiva\nditiva\ntp_transtorno_me",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "de deficiência auditiva\nSe o paciente possui",
+      "Características": "categoria = 8 (não se\naplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).\nCampo Essencial\nSe campo 38 for = 2 ou\npreencher\nautomaticamente com\nalgum tipo",
+      "DBF": "DEF_AUDITI"
+    },
+    {
+      "Nome do Campo": "39. Transtorno",
+      "Campo": "mental\nntal",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado",
+      "Descrição": "de transtorno mental",
+      "Características": "categoria = 8 (não se\naplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).",
+      "DBF": "TRAN_MENT"
+    },
+    {
+      "Nome do Campo": "39. Transtorno",
+      "Campo": "tp_transtorno_co",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Sim",
+      "Descrição": "Se o paciente possui",
+      "Características": "algum tipo Campo Essencial",
+      "DBF": "TRAN_COMP"
+    },
+    {
+      "Nome do Campo": "comportamento\n39. Outras deficiências/\nsíndromes\n39. Outras deficiências/",
+      "Campo": "mportamento\ntp_deficiencia_sin\ndrome",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2. Não\n8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não\n8. Não se aplica\n9. Ignorado",
+      "Descrição": "Especificar qual o\nde outras deficiências/síndromes\nde transtorno de comportamento\nSe o paciente possui",
+      "Características": "Se campo 38 for = 2 ou\npreencher\nautomaticamente com\ncategoria = 8 (não se\naplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).\nCampo Essencial\nSe campo 38 for = 2 ou\npreencher\nautomaticamente com\nalgum tipo\ncategoria = 8 (não se\naplica).\nSe campo 38 = 1, não\naceitar categoria = 8 (não\nse aplica).\nCampo obrigatório\ntipo de outras se campo 39 Outras",
+      "DBF": "DEF_OUT"
+    },
+    {
+      "Nome do Campo": "síndromes (especificar)",
+      "Campo": "ds_sindrome",
+      "Tipo": "varchar2(30)",
+      "Categoria": "Tabela com Código",
+      "Descrição": "deficiências/síndromes\nSigla da Unidade\ndos estados",
+      "Características": "deficiências/síndromes for\n= 1\nFederada de Campo obrigatório",
+      "DBF": "DEF_ESPEC"
+    },
+    {
+      "Nome do Campo": "40. UF de ocorrência\n41. Município",
+      "Campo": "co_uf_ocorrencia\nco_municipio_res",
+      "Tipo": "varchar2(2)",
+      "Categoria": "padronizados pelo\nTabela com Códigos",
+      "Descrição": "ocorrência do evento\nIBGE\nocasião da notificação\ne nomes Código e nome do",
+      "Características": "por\nCampo obrigatório\nSão exibidos somente os\nmunicípios pertencentes\nUF selecionada no campo\nanterior.\nmunicípio de",
+      "DBF": "SG_UF_OCOR"
+    },
+    {
+      "Nome do Campo": "42. Distrito de\nocorrência",
+      "Campo": "co_distrito_ocorre\nncia",
+      "Tipo": "number(8)",
+      "Categoria": "Tabela com Códigos\npadronizados segundo\ndisponibilizada pelo\npara cadastramento\nmunicipal do Sinan\nOu tabela nacional\nsistema\nTabela Códigos e\npadronizados segundo\ndisponibilizada pelo",
+      "Descrição": "nomes Nome e respectivo\ncarregada no\ndistrito de ocorrência\ne nomes\npelo gestor Nome e respectivo\nsistema\nsistema Serão exibidos apenas\nTabela\nTabela bairro de ocorrência",
+      "Características": "Filtra apenas os distritos\ncódigo do\npertencentes ao Município\ndo evento\nselecionado no campo 41;\nCampo essencial\ncódigo do Se o bairro for de\ndo evento. município diferente do\nos município de ocorrencia,",
+      "DBF": "ID_DIS_OCOR"
+    },
+    {
+      "Nome do Campo": "43. Bairro de",
+      "Campo": "co_bairro_ocor",
+      "Tipo": "number(8)",
+      "Categoria": "para cadastramento\nmunicipal do Sinan",
+      "Descrição": "pelo gestor Bairros pertencentes\nMunicípio selecionado\ncampo anterior.",
+      "Características": "ao será gravado o nome\nno digitado no campo bairro\n(no_bairro_ocor) e não\nserá gravado nenhum\ncódigo.\nEsse campo será digitado",
+      "DBF": "ID_BA_OCOR"
+    },
+    {
+      "Nome do Campo": "43.Nome do Bairro\n44. Logradouro\navenida...) de\nocorrência",
+      "Campo": "no_bairro_ocor\nrua\nco_logradouro_oc\norrencia",
+      "Tipo": "varchar2(60)",
+      "Categoria": "Tipo e nome do logradouro\ndigitado na entrada\nse disponível selecionado\ntabela de logradouros\nmunicípio\ndescrição)",
+      "Descrição": "Identificação do tipo\nde dados ou, rua, travessa, etc.)\nem do logradouro\ndo Dados do endereço\n(código e ocorrência do evento\nIdentificação do tipo\nrua, travessa, etc.)",
+      "Características": "quando não houver bairro\ncadastrado\nSe o logradouro for de\n(avenida,\nmunicípio diferente do\ntítulo e nome\nmunicípio de residência,\nserá gravado o nome\nde\ndigitado no campo e não\nserá gravado nenhum\ncódigo.\n(avenida,\nTítulo e",
+      "DBF": "ID_LOG_OCO"
+    },
+    {
+      "Nome do Campo": "44. Logradouro\n45. Número do",
+      "Campo": "no_logradouro_oc\norrencia",
+      "Tipo": "varchar2(50)",
+      "Categoria": "Descrição digitada\nhá tabela no sistema.",
+      "Descrição": "quando não nome do logradouro\nDados do endereço\nocorrência do evento\netc)\nNº. do logradouro\nou do edifício)",
+      "Características": "de\n(av., rua,\n(nº. da casa",
+      "DBF": "NO_LOG_OCO"
+    },
+    {
+      "Nome do Campo": "logradouro de\nocorrência\n46. Complemento",
+      "Campo": "nu_ocorrencia",
+      "Tipo": "varchar2(6)",
+      "Categoria": "",
+      "Descrição": "Dados do endereço\nocorrência do evento\nComplemento do",
+      "Características": "de\nlogradouro",
+      "DBF": "NM_LOG_RES"
+    },
+    {
+      "Nome do Campo": "logradouro de\nocorrência",
+      "Campo": "ds_complemento_\nocorrencia",
+      "Tipo": "varchar2(30)",
+      "Categoria": "",
+      "Descrição": "(ex. Bloco D, apto.\nDados do endereço",
+      "Características": "casa, etc.)\nde",
+      "DBF": "DS_COMP_OC"
+    },
+    {
+      "Nome do Campo": "47. Geo campo",
+      "Campo": "co_geo_campo_3",
+      "Tipo": "number(8)",
+      "Categoria": "Selecionado em tabela\nlocalidade ( código\nTabela com Códigos\npadronizados segundo\ndisponibilizada pelo\npara cadastramento\nmunicipal do Sinan\nSelecionado em tabela\nlocalidade (código\nTabela com Códigos",
+      "Descrição": "ocorrência do evento\nde\ne descrição)\ne nomes\nCampo para Geo-\nTabela\nReferenciamento\nsistema\npelo gestor\nde\ne descrição)\ne nomes\nCampo para Geo-",
+      "Características": "",
+      "DBF": "ID_GEO3"
+    },
+    {
+      "Nome do Campo": "48. Geo campo",
+      "Campo": "no_geo_campo_4",
+      "Tipo": "number(8)",
+      "Categoria": "padronizados segundo\ndisponibilizada pelo\npara cadastramento\nmunicipal do Sinan",
+      "Descrição": "Tabela\nReferenciamento\nsistema\npelo gestor\nPonto de referência",
+      "Características": "para",
+      "DBF": "ID_GEO4"
+    },
+    {
+      "Nome do Campo": "49. Ponto de referencia\nda ocorrencia",
+      "Campo": "ds_referencia_oco\nrrencia\ntp_zona_ocorrenc",
+      "Tipo": "varchar2(70)",
+      "Categoria": "1. Urbana\n2. Rural",
+      "Descrição": "facilitar a localização\nde ocorrência do\nZona de ocorrencia",
+      "Características": "do local\nevento\ndo evento",
+      "DBF": "DS_REF_OCO"
+    },
+    {
+      "Nome do Campo": "50. Zona de ocorrencia",
+      "Campo": "ia",
+      "Tipo": "varchar2(1)",
+      "Categoria": "3. Periurbano\n9. Ignorado",
+      "Descrição": "Informar a hora em\npor ocasião da notificação",
+      "Características": "que a\nCampo essencial",
+      "DBF": "ZONA_OCOR"
+    },
+    {
+      "Nome do Campo": "51. Hora de ocorrência",
+      "Campo": "hr_ocorrencia\ntp_local_ocorrenc",
+      "Tipo": "hora (hh:mm)",
+      "Categoria": "01. Residência\n02. Habitação\n03. Escola\n04. Local de\nesportiva",
+      "Descrição": "Informar o local de\ncoletiva\no intervalo de 00:00\nprática\nviolência ocorreu",
+      "Características": "considerando\na 23:59s\nCampo obrigatório\nocorrência",
+      "DBF": "HORA_OCOR"
+    },
+    {
+      "Nome do Campo": "52. Local de ocorrência\n52. Local de ocorrência",
+      "Campo": "ia",
+      "Tipo": "varchar2(2)",
+      "Categoria": "05. Bar ou similar\n06. Via publica\n07. Comércio/Serviços\n08. Industrias/\n09. Outro\n99. Ignorado",
+      "Descrição": "Especificar outro\nconstrução\ndo evento notificado",
+      "Características": "Se categoria selecionada\nfor diferente de 09, pular\npara questão 53\nCampo obrigatório\nlocal de se campo 52 Local de",
+      "DBF": "LOCAL_OCOR"
+    },
+    {
+      "Nome do Campo": "53. Ocorreu outras\nvezes?\n54. A lesão foi",
+      "Campo": "st_ocorreu_outra_\nvez\nst_lesao_autoprov",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Sim\n2. Não\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se a violência\nrepetição\nInformar se a lesão",
+      "Características": "é de Campo Essencial\nfoi",
+      "DBF": "OUT_VEZES"
+    },
+    {
+      "Nome do Campo": "autoprovocada?\n55. Violência",
+      "Campo": "ocada\nmotivada\ntp_violencia_moti",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n01. Sexismo\n02. Homofobia/Lesbofobia\nBifobia/Transfobia\n03. Racismo\n04. Intolerância\n05. Xenofobia",
+      "Descrição": "Informar se violência\nautoprovocada\nreligiosa",
+      "Características": "Campo essencial\ntem\nCampo obrigatório",
+      "DBF": "LES_AUTOP"
+    },
+    {
+      "Nome do Campo": "por:\n56. Tipo de Violência",
+      "Campo": "vada\nst_violencia_fisic",
+      "Tipo": "varchar2(1)",
+      "Categoria": "06. Conflito\n07. Situação\n08. Deficiência\n09. Outros\n88. Não se aplica\n99. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nde rua vitima\ngeracional relação com caractéristicas",
+      "Características": "da\nviolência Campo obrigatório",
+      "DBF": "VIOL_MOTIV"
+    },
+    {
+      "Nome do Campo": "Física\n56. Tipo de Violência",
+      "Campo": "st_violencia_psic",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nfísica",
+      "Características": "Campo obrigatório\nviolência",
+      "DBF": "VIOL_FISIC"
+    },
+    {
+      "Nome do Campo": "Tortura\n56. Tipo de Violência",
+      "Campo": "st_tortura\nst_violencia_sexu",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nInformar se ocorreu",
+      "Características": "tortura\nCampo obrigatório\nviolência",
+      "DBF": "VIOL_TORT"
+    },
+    {
+      "Nome do Campo": "Sexual\n56. Tipo de Violência",
+      "Campo": "al\nst_trafico_ser_hu",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nsexual",
+      "Características": "tráfico de Campo obrigatório",
+      "DBF": "VIOL_SEXU"
+    },
+    {
+      "Nome do Campo": "Tráfico de seres\nhumanos",
+      "Campo": "mano",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado",
+      "Descrição": "seres humanos",
+      "Características": "",
+      "DBF": "VIOL_TRAF"
+    },
+    {
+      "Nome do Campo": "56. Tipo de Violência",
+      "Campo": "st_violencia_finan",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Sim",
+      "Descrição": "Informar se ocorreu",
+      "Características": "violência Campo obrigatório",
+      "DBF": "VIOL_FINAN"
+    },
+    {
+      "Nome do Campo": "financeira/econômico\n56. Tipo de Violência\nNegligencia/ abandono\n56. Tipo de Violência",
+      "Campo": "st_neglicencia_ab\nandono\nst_trabalho_infant",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2. Não\n9. Ignorado\n1. Sim\n2. Não\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nInformar se ocorreu\nfinanceira/econômica\nnegligencia/abandono",
+      "Características": "Campo obrigatório\ntrabalho Campo obrigatório",
+      "DBF": "VIOL_NEGLI"
+    },
+    {
+      "Nome do Campo": "Trabalho infantil\n56. Tipo de Violência",
+      "Campo": "il\nst_intervencao_le",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\ninfantil",
+      "Características": "intervenção Campo obrigatório",
+      "DBF": "VIOL_INFAN"
+    },
+    {
+      "Nome do Campo": "Intervenção legal\n56. Tipo de Violência",
+      "Campo": "gal\nst_outro_tipo_viol",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nlegal",
+      "Características": "Campo obrigatório\noutro tipo Se categoria=2 ou 9, pular",
+      "DBF": "VIOL_LEGAL"
+    },
+    {
+      "Nome do Campo": "Outros\n56. Outros tipos",
+      "Campo": "encia\nds_outro_tipo_vio",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado",
+      "Descrição": "Especificar que outro\nde violência",
+      "Características": "para o campo 57. Meio\nagressão Força\nCorporal/Espancamento\ntipo de Campo Obrigatório se",
+      "DBF": "VIOL_OUTR"
+    },
+    {
+      "Nome do Campo": "violência (especificar)\n57. Meio de Agressão",
+      "Campo": "lencia\nst_forca_corporal",
+      "Tipo": "varchar2(30)",
+      "Categoria": "1. Sim\n2. Não",
+      "Descrição": "Informar se o meio\nviolência ocorreu.",
+      "Características": "campo 56-Outros for = 1.\nde agressão Campo Essencial",
+      "DBF": "VIOL_ESPEC"
+    },
+    {
+      "Nome do Campo": "Enforcamento\n57. Meio de Agressão",
+      "Campo": "st_enforcamento\nst_objeto_contude",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o meio\nfoi através de enforcamento",
+      "Características": "de agressão Campo Essencial",
+      "DBF": "AG_ENFOR"
+    },
+    {
+      "Nome do Campo": "Objeto contundente\n57. Meio de Agressão",
+      "Campo": "nte\nst_objeto_perfuro",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o meio\nfoi através de objeto",
+      "Características": "contundent\nde agressão\nCampo Essencial",
+      "DBF": "AG_OBJETO"
+    },
+    {
+      "Nome do Campo": "Objeto perfuro-cortante\n57. Meio de Agressão",
+      "Campo": "st_subst_objeto_q",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim",
+      "Descrição": "Informar se o meio\ncortant\nfoi através de obj.",
+      "Características": "perfuro\nde agressão Campo Essencial",
+      "DBF": "AG_CORTE"
+    },
+    {
+      "Nome do Campo": "Substancia/objeto",
+      "Campo": "uente",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2. Não",
+      "Descrição": "foi através de subst/obj",
+      "Características": "quente",
+      "DBF": "AG_QUENTE"
+    },
+    {
+      "Nome do Campo": "quente\n57. Meio de Agressão\nEnvenenamento,\nIntoxicação\n57. Meio de Agressão",
+      "Campo": "st_envenenament",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o meio\nfoi através de envenenamento\nInformar se o meio",
+      "Características": "de agressão Campo Essencial\nde agressão Campo Essencial",
+      "DBF": "AG_ENVEN"
+    },
+    {
+      "Nome do Campo": "Arma de fogo\n57. Meio de Agressão",
+      "Campo": "st_arma_fogo",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o meio\nfoi através de arma",
+      "Características": "de fogo\nde agressão Campo Essencial",
+      "DBF": "AG_FOGO"
+    },
+    {
+      "Nome do Campo": "Ameaça\n57. Meio de Agressão",
+      "Campo": "st_ameaca\nst_outro_meio_ag",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o meio\nfoi através de ameaça",
+      "Características": "Se categoria selecionada\nfor =2 ou 9, pular para o\nde agressão",
+      "DBF": "AG_AMEACA"
+    },
+    {
+      "Nome do Campo": "Outro\n57. Meio de Agressão",
+      "Campo": "ressao\nds_outro_meio_a",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado",
+      "Descrição": "Especificar qual outro\nfoi através de outro",
+      "Características": "campo 58. Se ocorreu\nviolência sexual, qual tipo?\n- Assedio sexual\nCampo Obrigatório se\nmeio de",
+      "DBF": "AG_OUTROS"
+    },
+    {
+      "Nome do Campo": "Outro meio de\n(especificar)\n58. Se ocorreu",
+      "Campo": "gressao\nst_ocorreu_violen",
+      "Tipo": "varchar2(30)",
+      "Categoria": "1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nagressão sofreu.",
+      "Características": "campo 57-Outro for = 1.\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nassedio",
+      "DBF": "AG_ESPEC"
+    },
+    {
+      "Nome do Campo": "sexual, qual tipo?\nAssedio sexual\n58. Se ocorreu",
+      "Campo": "cia_assedio\nst_ocorreu_violen",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "sexual",
+      "Características": "Categoria 8 (não se aplica)\nse campo 56 – tipo de\nviolência sexual for = 2\n9\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.",
+      "DBF": "SEX_ASSEDI"
+    },
+    {
+      "Nome do Campo": "sexual, qual tipo?\nEstupro",
+      "Campo": "cia_estupro",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado",
+      "Descrição": "Informar se ocorreu",
+      "Características": "estupro\nCategoria 8 (não se aplica)\nse campo 56 – tipo de\nviolência sexual for = 2",
+      "DBF": "SEX_ESTUPR"
+    },
+    {
+      "Nome do Campo": "58. Se ocorreu\nsexual, qual tipo?\nPornografia infantil\n58. Se ocorreu",
+      "Campo": "st_ocorreu_violen\ncia_porno_inf",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Sim\n2. Não\n8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\ninfantil\nInformar se ocorreu",
+      "Características": "9\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nCategoria 8 (não se aplica)\nPornografia\nse campo 56– tipo de\nviolência sexual for = 2\n9\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nexploração Categoria 8 (não se aplica)",
+      "DBF": "SEX_PORNO"
+    },
+    {
+      "Nome do Campo": "sexual, qual tipo?\nExploração sexual\n58. Se ocorreu",
+      "Campo": "st_ocorreu_violen",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nsexual",
+      "Características": "se campo 56 – tipo de\nviolência sexual for = 2\n9\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\noutro tipo Categoria 8 (não se aplica)",
+      "DBF": "SEX_EXPLO"
+    },
+    {
+      "Nome do Campo": "58. Se ocorreu\nsexual, qual tipo?\nOutro tipo de\nsexual (especificar)\n59. Procedimento",
+      "Campo": "ds_ocorreu_viole\nst_proc_profilaxia",
+      "Tipo": "varchar2(30)",
+      "Categoria": "1. Sim\n2. Não",
+      "Descrição": "Especificar qual outro\nviolência sexual\nInformar se ocorreu",
+      "Características": "campo 59. Procedimento\nrealizado.\nCampo Obrigatório se\ntipo de campo 58. Se ocorreu\nviolência sexual, qual tipo?\n- Outro =1\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nprofilaxia",
+      "DBF": "SEX_ESPEC"
+    },
+    {
+      "Nome do Campo": "DST\n59. Procedimento\nrealizado – Profilaxia",
+      "Campo": "st_proc_profilaxia",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não\n8. Não se aplica",
+      "Descrição": "Informar se ocorreu\nDST",
+      "Características": "Se campo 56 violência\nsexual for = 2 ou 9\npreencher com categoria\nautomaticamente\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nprofilaxia",
+      "DBF": "PROC_HIV\nDST"
+    },
+    {
+      "Nome do Campo": "HIV\n59. Procedimento\nrealizado – Profilaxia\nHepatite B\n59. Procedimento",
+      "Campo": "st_proc_profilaxia\nst_proc_coleta_sa",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não\n8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nInformar se ocorreu\nhepatite B\nHIV",
+      "Características": "Se campo 56 violência\nsexual for = 2 ou 9\npreencher com categoria\nautomaticamente\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nprofilaxia\nSe campo 56 violência\nsexual for = 2 ou 9\npreencher com categoria\nautomaticamente\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\ncoleta de",
+      "DBF": "PROC_HEPB\nHIV"
+    },
+    {
+      "Nome do Campo": "realizado – Coleta\nsangue\n59. Procedimento",
+      "Campo": "ngue\nst_proc_coleta_se",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim",
+      "Descrição": "Informar se ocorreu\nsangue",
+      "Características": "Se campo 56 violência\nsexual for = 2 ou 9\npreencher com categoria\nautomaticamente\nCampo essencial\ncoleta de",
+      "DBF": "PROC_SANG"
+    },
+    {
+      "Nome do Campo": "realizado – Coleta\nsêmen",
+      "Campo": "men",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2. Não\n8. Não se aplica",
+      "Descrição": "semen",
+      "Características": "Habilitado se campo 56-\nviolência sexual for=1.",
+      "DBF": "PROC_SEMEN"
+    },
+    {
+      "Nome do Campo": "59. Procedimento\nrealizado – Coleta\nsecreção vaginal\n59. Procedimento\nrealizado –",
+      "Campo": "st_proc_coleta_se\ncrecao_vagina\nst_proc_contracep",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não\n8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\nsecreção vaginal\nInformar se ocorreu",
+      "Características": "Se campo 56 violência\nsexual for = 2 ou 9\npreencher com categoria\nautomaticamente\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nSe campo 56 violência\nsexual for = 2 ou 9\ncoleta de\npreencher com categoria\nautomaticamente\nSe sexo igual a Masculino\n(M) preencher com não\naplica (8)\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\nSe campo 56 violência\nsexual for = 2 ou 9",
+      "DBF": "PROC_VAGIN"
+    },
+    {
+      "Nome do Campo": "Contracepção\nemergência\n59. Procedimento",
+      "Campo": "cao_emergenc\nst_porc_aborto_pr",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se ocorreu\ncontracepção de emergencia",
+      "Características": "preencher com categoria\nautomaticamente\nSe sexo igual a Masculino\n(M) preencher com não\naplica (8)\nCampo essencial\nHabilitado se campo 56-\nviolência sexual for=1.\naborto Se campo 56 violência",
+      "DBF": "PROC_CONTR"
+    },
+    {
+      "Nome do Campo": "realizado - Aborto\nprevisto em lei",
+      "Campo": "evisto_lei",
+      "Tipo": "varchar2(1)",
+      "Categoria": "8. Não se aplica\n9. Ignorado",
+      "Descrição": "previsto em lei",
+      "Características": "sexual for = 2 ou 9\npreencher com categoria\nautomaticamente\nSe sexo igual a Masculino",
+      "DBF": "PROC_ABORT"
+    },
+    {
+      "Nome do Campo": "60. Numero de\nenvolvidos\n61. Relação com",
+      "Campo": "tp_numero_envol\nvido\nst_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Um\n2. Dois ou\n9.Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar o número\nmais\nenvolvidos na violência\nInformar se o provável",
+      "Características": "(M) preencher com não\naplica (8)\nde\nCampo obrigatório\nautor da",
+      "DBF": "NUM_ENVOL"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o pai",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_PAI"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era a mãe",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_MAE"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nPadrasto\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o padrasto",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_PAD"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nMadrasta\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era a madrasta",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_MAD"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nCônjuge\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o cônjuge",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_CONJ"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\ncônjuge\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o ex-cônjuge",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_EXCON"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nNamorado(a)\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o namorado(a)",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_NAMO"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nnamorado(a)\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o (a)\nagressão era o ex-namorado(a)",
+      "Características": "provável autor\nCampo obrigatório",
+      "DBF": "REL_EXNAM"
+    },
+    {
+      "Nome do Campo": "61. Relação com\npessoa atendida\n(ã)\n61. Relação com\npessoa atendida\nAmigos/conhecidos\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Sim\n2. Não\n9. Ignorado\n1. Sim\n2. Não\n9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era irmão\nInformar se o provável\nagressão eram amigo(s)/\nconhecido(s)\nInformar se o provável",
+      "Características": "autor da Campo obrigatório\nou irmã\nautor da\nCampo obrigatório\nautor da Campo obrigatório",
+      "DBF": "REL_CONHEC"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nDesconhecido\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era desconhecido",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_DESCO"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\ncuidador\n61. Relação com",
+      "Campo": "st_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o cuidador",
+      "Características": "autor da Campo obrigatório",
+      "DBF": "REL_CUIDA"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\npatrão/chefe\n61.Relação com",
+      "Campo": "pessoa\nst_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era o patrão/chefe",
+      "Características": "autor da\nCampo obrigatório",
+      "DBF": "REL_PATRAO"
+    },
+    {
+      "Nome do Campo": "atendida – pessoa\nrelação institucional\n61. Relação com",
+      "Campo": "com\nst_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era pessoa\ninstitucional",
+      "Características": "com relação\nautor da\nCampo obrigatório",
+      "DBF": "REL_INST"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\npolicial/agente\n61. Relação com",
+      "Campo": "lei\nst_prov_autor_pro",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era policial/agente\nlei",
+      "Características": "da\nautor da Campo obrigatório",
+      "DBF": "REL_POL"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nPrópria pessoa\n61. Relação com",
+      "Campo": "pria\nst_provavel_autor",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar se o provável\nagressão era a própria\nagressão tinha outro",
+      "Características": "pessoa\nCampo obrigatório\nautor da\ntipo de",
+      "DBF": "REL_PROPRI"
+    },
+    {
+      "Nome do Campo": "pessoa atendida\nOutros\n61. Relação com",
+      "Campo": "ds_provavel_auto",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado",
+      "Descrição": "Especificar outro\nrelação",
+      "Características": "Se categoria=2 ou 9, pular\npara campo 62. Sexo do\nprovável autor da agressão\nCampo Obrigatório se\ntipo de relação campo 61. Relação com",
+      "DBF": "REL_OUTROS"
+    },
+    {
+      "Nome do Campo": "62. Sexo do provável\nautor da violência\n63. Suspeita de",
+      "Campo": "tp_sexo_provavel\nuso\nst_suspeita_uso_a",
+      "Tipo": "varchar2(1)",
+      "Categoria": "1. Masculino\n2. Feminino\n3. Ambos os\n9 .Ignorado\n1. Sim\n2. Não",
+      "Descrição": "Informar o sexo do\nsexos\nautor da agressão\nInformar se o provável",
+      "Características": "provável Campo obrigatório\nautor da",
+      "DBF": "AUTOR_SEXO"
+    },
+    {
+      "Nome do Campo": "álcool\n64. Ciclo de vida",
+      "Campo": "lcool",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9. Ignorado\n1. Criança\n2. Adolescente",
+      "Descrição": "agressão tinha suspeita\nde alcool",
+      "Características": "de uso",
+      "DBF": "AUTOR_ALCO"
+    },
+    {
+      "Nome do Campo": "65. Encaminhamento\nRede da Saúde\n65. Encaminhamento",
+      "Campo": "st_saude\nst_assistencia_soc",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nencaminhamento\nrede da saúdel",
+      "Características": "no setor da Campo obrigatório",
+      "DBF": "ENC_SAUDE"
+    },
+    {
+      "Nome do Campo": "Rede da Assistencia\nSocial\n65. Encaminhamento",
+      "Campo": "ial\nst_rede_de_educa",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nencaminhamento\nrede Assistencia Social",
+      "Características": "no setor da Campo obrigatório",
+      "DBF": "ASSIST_SOC"
+    },
+    {
+      "Nome do Campo": "Rede de Atendimento\nMulher\n65. Encaminhamento",
+      "Campo": "st_rede_atendime\nnto_mulher\nst_conselho_tutel",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nencaminhamento\nrede atendimento",
+      "Características": "no setor da Campo obrigatório\nà mulher",
+      "DBF": "ATEND_MUL"
+    },
+    {
+      "Nome do Campo": "Conselho Tutelar\n65. Encaminhamento",
+      "Campo": "ar",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nConselho Tutelar\nencaminhamento",
+      "Características": "para o Campo obrigatório",
+      "DBF": "CONS_TUTEL"
+    },
+    {
+      "Nome do Campo": "Conselho do Idoso\n65. Encaminhamento",
+      "Campo": "st_conselho_idoso",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nConselho do Idoso\nencaminhamento",
+      "Características": "para o Campo obrigatório",
+      "DBF": "CONS_IDO"
+    },
+    {
+      "Nome do Campo": "Delegacia de\nAtendimento\n65. Encaminhamento",
+      "Campo": "st_del_atendi_ido\nso\nao",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nde atendimento ao\nencaminhamento",
+      "Características": "para delegacia Campo obrigatório\nidoso",
+      "DBF": "DELEG_IDOS"
+    },
+    {
+      "Nome do Campo": "Centro de Referência\ndos Direitos Humanos",
+      "Campo": "eitos_humanos",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado",
+      "Descrição": "encaminhamento\nreferência dos direitos",
+      "Características": "para centro de Campo obrigatório\nHumanos",
+      "DBF": "DIR_HUMAN"
+    },
+    {
+      "Nome do Campo": "65. Encaminhamento",
+      "Campo": "st_mp",
+      "Tipo": "",
+      "Categoria": "1-Sim",
+      "Descrição": "Informar se houve",
+      "Características": "Campo obrigatório",
+      "DBF": "MPU"
+    },
+    {
+      "Nome do Campo": "Delegacia de\nAtendimento\n65. Encaminhamento",
+      "Campo": "st_del_atendiment\nst_",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nde atendimento à\nencaminhamento",
+      "Características": "para Delegacia Campo obrigatório\nmulher",
+      "DBF": "DELEG_MUL"
+    },
+    {
+      "Nome do Campo": "Justiça da infância\nJuventude\n65. Encaminhamento",
+      "Campo": "st_defensoria_pub",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim",
+      "Descrição": "Informar se houve\nencaminhamento\ninfência e da juventude",
+      "Características": "para justiça da Campo obrigatório",
+      "DBF": "INFAN_JUV"
+    },
+    {
+      "Nome do Campo": "Defensoria pública\n66. Violência",
+      "Campo": "lica\nst_violencia_rel_t",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n9-Ignorado\n1-Sim\n2-Não",
+      "Descrição": "Informar se ocorreu\ndefensoria pública\nencaminhamento",
+      "Características": "para Campo obrigatório\nCampo Essencial\nviolência Se categoria=2 ou 9 pular",
+      "DBF": "DEFEN_PUBL"
+    },
+    {
+      "Nome do Campo": "relacionada ao\n67. Se sim, foi",
+      "Campo": "trabalho\nrabalho\nemitida",
+      "Tipo": "varchar2(1)",
+      "Categoria": "9-Ignorado\n1-Sim",
+      "Descrição": "relacionada ao trabalho",
+      "Características": "para o campo 68.\nCircunstância da lesão\nCategoria=8 se campo 66.\nViolência relacionada ao\ntrabalho for = 2 ou 9",
+      "DBF": "REL_TRAB"
+    },
+    {
+      "Nome do Campo": "comunicação\nacidente de trabalho",
+      "Campo": "st_emitida_cat",
+      "Tipo": "varchar2(1)",
+      "Categoria": "2-Não\n8-Não se aplica\n9-Ignorado",
+      "Descrição": "Informar se foi emitida\ncaso a violência seja\nao trabalho",
+      "Características": "a CAT,\nrelacionada\nSe campo 66. Violência",
+      "DBF": "REL_CAT\nCAT"
+    },
+    {
+      "Nome do Campo": "(CAT)\n68. Circunstância\nlesão",
+      "Campo": "co_cid_lesao",
+      "Tipo": "varchar2(5)",
+      "Categoria": "Tabela de agravos\ncom códigos (classificação\ninternacional de doenças",
+      "Descrição": "Nome e código do\n- CID\ndo sistema\nnotificado segundo",
+      "Características": "relacionada ao trabalho\n= 1 não permitir a\ncategoria 8. Não se aplica\nagravo\nCampo Essencial\nCID-10",
+      "DBF": "CIRC_LESAO\nCAT"
+    },
+    {
+      "Nome do Campo": "69. Data de\nencerramento",
+      "Campo": "dt_encerramento",
+      "Tipo": "date",
+      "Categoria": "10) e nomes dos agravos\nDd/mm/aaaa",
+      "Descrição": "data de encerramento\nCAPITULO XX (VO1",
+      "Características": "a Y98)\nCampo≥ data da\ndo caso.\nnotificação",
+      "DBF": "DT_ENCERRA\nCAPITULO\nVO1\nY98"
+    },
+    {
+      "Nome do Campo": "Observações",
+      "Campo": "adicionais\nds_observacao",
+      "Tipo": "",
+      "Categoria": "",
+      "Descrição": "",
+      "Características": "",
+      "DBF": "DS_OBS"
+    }
+  ],
+  "stats": {
+    "pages": 24,
+    "tables_seen": 0,
+    "tables_used": 0,
+    "rows_emitted": 136
+  }
+}

@@ -1,15 +1,15 @@
 {
   "AG_AMEACA": {
     "nome": "AG_AMEACA",
-    "descricao": "Campo AG_AMEACA - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\nfoi através de ameaça",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "AG_CORTE": {
     "nome": "AG_CORTE",
-    "descricao": "Campo AG_CORTE - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\ncortant\nfoi através de obj.",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -17,7 +17,7 @@
   },
   "AG_ENFOR": {
     "nome": "AG_ENFOR",
-    "descricao": "Campo AG_ENFOR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\nfoi através de enforcamento",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -25,7 +25,7 @@
   },
   "AG_ENVEN": {
     "nome": "AG_ENVEN",
-    "descricao": "Campo AG_ENVEN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\nfoi através de envenenamento\nInformar se o meio",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -33,7 +33,7 @@
   },
   "AG_ESPEC": {
     "nome": "AG_ESPEC",
-    "descricao": "Campo AG_ESPEC - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nagressão sofreu.",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -41,7 +41,7 @@
   },
   "AG_FOGO": {
     "nome": "AG_FOGO",
-    "descricao": "Campo AG_FOGO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\nfoi através de arma",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -49,7 +49,7 @@
   },
   "AG_FORCA": {
     "nome": "AG_FORCA",
-    "descricao": "Campo AG_FORCA - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "de agressão Campo Essencial",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -57,7 +57,7 @@
   },
   "AG_OBJETO": {
     "nome": "AG_OBJETO",
-    "descricao": "Campo AG_OBJETO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\nfoi através de objeto",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -65,7 +65,7 @@
   },
   "AG_OUTROS": {
     "nome": "AG_OUTROS",
-    "descricao": "Campo AG_OUTROS - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Especificar qual outro\nfoi através de outro",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -73,7 +73,7 @@
   },
   "AG_QUENTE": {
     "nome": "AG_QUENTE",
-    "descricao": "Campo AG_QUENTE - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "foi através de subst/obj",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -85,11 +85,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ASSIST_SOC": {
     "nome": "ASSIST_SOC",
-    "descricao": "ASSIST_SOC. Campo obrigatório",
+    "descricao": "Informar se houve\nencaminhamento\nrede Assistencia Social",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -101,11 +101,11 @@
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "AUTOR_ALCO": {
     "nome": "AUTOR_ALCO",
-    "descricao": "Campo AUTOR_ALCO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "agressão tinha suspeita\nde alcool",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -113,7 +113,7 @@
   },
   "AUTOR_SEXO": {
     "nome": "Sexo do provável autor da violência",
-    "descricao": "Informar o sexo do provável autor da agressão. Campo obrigatório",
+    "descricao": "Informar o sexo do\nsexos\nautor da agressão\nInformar se o provável",
     "tipo": "varchar2(1)",
     "obrigatorio": true,
     "categoria": {
@@ -122,7 +122,7 @@
       "3": "Ambos os sexos",
       "9": "Ignorado"
     },
-    "relevante": false
+    "relevante": true
   },
   "CICL_VID": {
     "nome": "CICL_VID",
@@ -134,11 +134,11 @@
   },
   "CIRC_LESAO": {
     "nome": "Circunstância da lesão",
-    "descricao": "Nome e código do agravo notificado segundo CID-10 - CAPITULO XX (VO1 a Y98). Campo Essencial",
+    "descricao": "Nome e código do\n- CID\ndo sistema\nnotificado segundo",
     "tipo": "varchar2(5)",
     "obrigatorio": false,
     "categoria": "Tabela de agravos do sistema com códigos CID-10",
-    "relevante": false
+    "relevante": true
   },
   "CLASSI_FIN": {
     "nome": "CLASSI_FIN",
@@ -198,7 +198,7 @@
   },
   "CONS_IDO": {
     "nome": "CONS_IDO",
-    "descricao": "CONS_IDO. Campo obrigatório",
+    "descricao": "Informar se houve\nConselho do Idoso\nencaminhamento",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -230,23 +230,23 @@
   },
   "CONS_TUTEL": {
     "nome": "CONS_TUTEL",
-    "descricao": "CONS_TUTEL. Campo obrigatório",
+    "descricao": "Informar se houve\nConselho Tutelar\nencaminhamento",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "CS_ESCOL_N": {
     "nome": "CS_ESCOL_N",
-    "descricao": "Campo CS_ESCOL_N - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Considerando a última instrução incompleto concluída com aprovação ou 2° grau) grau de instrução completo por ocasião da notificação. ou 2° grau) Número do cartão",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "CS_GESTANT": {
     "nome": "CS_GESTANT",
-    "descricao": "Campo CS_GESTANT - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Idade gestacional\nignorada",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -254,23 +254,23 @@
   },
   "CS_RACA": {
     "nome": "CS_RACA",
-    "descricao": "Campo CS_RACA - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Considera-se cor\ndeclarada pela pessoa.\n1. branca\n2. preta\n3. amarela (pessoa\ndeclarou de raça\n4. parda (pessoa\ndeclarou mulata,\ncafuza, mameluca\nmestiça de preto\npessoa de outra\n5. indígena (pessoa\ndeclarou indígena\ndo\ndo EF (\ndo\nou 1°\nSérie e grau que a\nginásio ou freqüentando ou freqüentou",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "CS_SEXO": {
     "nome": "CS_SEXO",
-    "descricao": "Campo CS_SEXO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Sexo do paciente",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEFEN_PUBL": {
     "nome": "DEFEN_PUBL",
-    "descricao": "DEFEN_PUBL. Campo obrigatório",
+    "descricao": "Informar se ocorreu\ndefensoria pública\nencaminhamento",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -278,63 +278,63 @@
   },
   "DEF_AUDITI": {
     "nome": "DEF_AUDITI",
-    "descricao": "Campo DEF_AUDITI - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "de deficiência auditiva\nSe o paciente possui",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEF_ESPEC": {
     "nome": "DEF_ESPEC",
-    "descricao": "Campo DEF_ESPEC - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "deficiências/síndromes\nSigla da Unidade\ndos estados",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEF_FISICA": {
     "nome": "DEF_FISICA",
-    "descricao": "Campo DEF_FISICA - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "de deficiência física\nSe o paciente possui",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEF_MENTAL": {
     "nome": "DEF_MENTAL",
-    "descricao": "Campo DEF_MENTAL - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "de deficiência mental",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEF_OUT": {
     "nome": "DEF_OUT",
-    "descricao": "Campo DEF_OUT - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Especificar qual o\nde outras deficiências/síndromes\nde transtorno de comportamento\nSe o paciente possui",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEF_TRANS": {
     "nome": "DEF_TRANS",
-    "descricao": "Campo DEF_TRANS - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Se o paciente possui\nde deficiência/ transtorno\nSe o paciente possui",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DEF_VISUAL": {
     "nome": "DEF_VISUAL",
-    "descricao": "Campo DEF_VISUAL - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Se o paciente possui\nde deficiência visual\nSe o paciente possui",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "DELEG": {
     "nome": "DELEG",
-    "descricao": "DELEG. Campo obrigatório",
+    "descricao": "para Delegacia Campo obrigatório\nmulher\npara outras Campo obrigatório",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -350,7 +350,7 @@
   },
   "DELEG_IDOS": {
     "nome": "DELEG_IDOS",
-    "descricao": "DELEG_IDOS. Campo obrigatório",
+    "descricao": "Informar se houve\nde atendimento ao\nencaminhamento",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -366,7 +366,7 @@
   },
   "DIR_HUMAN": {
     "nome": "DIR_HUMAN",
-    "descricao": "DIR_HUMAN. Campo obrigatório",
+    "descricao": "encaminhamento\nreferência dos direitos",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -382,15 +382,15 @@
   },
   "DT_ENCERRA": {
     "nome": "Data de encerramento",
-    "descricao": "Data de encerramento do caso (dd/mm/aaaa). Campo >= data da notificação",
+    "descricao": "data de encerramento\nCAPITULO XX (VO1",
     "tipo": "date",
     "obrigatorio": false,
     "categoria": "Data >= data da notificação",
-    "relevante": false
+    "relevante": true
   },
   "DT_INVEST": {
     "nome": "DT_INVEST",
-    "descricao": "Campo DT_INVEST - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Data da investigação (dd/mm/aaaa)",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -398,7 +398,7 @@
   },
   "DT_NOTIFIC": {
     "nome": "Data da Notificação",
-    "descricao": "Data de preenchimento da ficha de notificação (dd/mm/aaaa). Campo Chave",
+    "descricao": "Data de preenchimento\nde notificação.\nSemana epidemiológica",
     "tipo": "date",
     "obrigatorio": true,
     "categoria": "dd/mm/aaaa",
@@ -414,11 +414,11 @@
   },
   "DT_OCOR": {
     "nome": "Data da ocorrência da violência",
-    "descricao": "Data da ocorrência da violência (dd/mm/aaaa). Campo Obrigatório. Data menor ou igual (<=) a Data de Notificação",
+    "descricao": "Semana epidemiológica",
     "tipo": "date",
     "obrigatorio": true,
     "categoria": "Data menor ou igual (<=) a Data de Notificação",
-    "relevante": false
+    "relevante": true
   },
   "DT_TRANSDM": {
     "nome": "DT_TRANSDM",
@@ -482,7 +482,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_DEAM": {
     "nome": "ENC_DEAM",
@@ -490,7 +490,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_DELEG": {
     "nome": "ENC_DELEG",
@@ -498,7 +498,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_DPCA": {
     "nome": "ENC_DPCA",
@@ -506,7 +506,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_ESPEC": {
     "nome": "ENC_ESPEC",
@@ -514,7 +514,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_IML": {
     "nome": "ENC_IML",
@@ -522,7 +522,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_MPU": {
     "nome": "ENC_MPU",
@@ -530,7 +530,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_MULHER": {
     "nome": "ENC_MULHER",
@@ -538,7 +538,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_OUTR": {
     "nome": "ENC_OUTR",
@@ -546,11 +546,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_SAUDE": {
     "nome": "Encaminhamento - Rede da Saúde",
-    "descricao": "Informar se houve encaminhamento no setor da rede da saúde. Campo obrigatório",
+    "descricao": "Informar se houve\nencaminhamento\nrede da saúdel",
     "tipo": "varchar2(1)",
     "obrigatorio": true,
     "categoria": {
@@ -558,7 +558,7 @@
       "2": "Não",
       "9": "Ignorado"
     },
-    "relevante": false
+    "relevante": true
   },
   "ENC_SENTIN": {
     "nome": "ENC_SENTIN",
@@ -566,7 +566,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_TUTELA": {
     "nome": "ENC_TUTELA",
@@ -574,7 +574,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ENC_VARA": {
     "nome": "ENC_VARA",
@@ -582,7 +582,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "EVOLUCAO": {
     "nome": "EVOLUCAO",
@@ -590,35 +590,35 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "HORA_OCOR": {
     "nome": "HORA_OCOR",
-    "descricao": "Campo HORA_OCOR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar o local de\ncoletiva\no intervalo de 00:00\nprática\nviolência ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "IDENT_GEN": {
     "nome": "IDENT_GEN",
-    "descricao": "Campo IDENT_GEN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "paciente",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ID_AGRAVO": {
     "nome": "Agravo",
-    "descricao": "Nome e código do agravo notificado segundo CID-10. Campo Chave. Preenchendo o código, a descrição é preenchida automaticamente, e vice-versa. Ao exportar, é retirado o ponto",
+    "descricao": "(Centro Colaborador\nsíndromes (\npara a Classificação\nem Português)\naguda; diarréia\ninsuficiência\nsíndromes",
     "tipo": "varchar2(4)",
     "obrigatorio": true,
     "categoria": "Tabela de agravos do sistema com códigos CID-10",
-    "relevante": false
+    "relevante": true
   },
   "ID_MN_OCOR": {
     "nome": "ID_MN_OCOR",
-    "descricao": "Campo ID_MN_OCOR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "IBGE ocorrência do evento\ne nomes\nTabela\nsistema\npelo gestor Nome e respectivo",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -626,7 +626,7 @@
   },
   "ID_MN_RESI": {
     "nome": "ID_MN_RESI",
-    "descricao": "Campo ID_MN_RESI - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Código do município\nao código na tabela.\nda regional\ne nomes residência do caso\nIBGE (tabela residência do paciente\nIBGE nome está associado\nlocalizado o município\nna tabela de municípios.\nocasião da notificação.\nRegional de saúde\numa variável que",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -634,7 +634,7 @@
   },
   "ID_MUNICIP": {
     "nome": "Município de Notificação",
-    "descricao": "Código do município onde está localizada a unidade de saúde. Campo Chave. Preenchendo o código, a descrição é preenchida automaticamente, e vice-versa",
+    "descricao": "cadastro do\nrealizou a notificação.\nestá associado ao\ntabela de municípios.\nRegional de saúde\nda regional\nlocalizado o município",
     "tipo": "varchar2(6)",
     "obrigatorio": true,
     "categoria": "Tabela com Código e nome dos municípios do cadastro do IBGE",
@@ -642,7 +642,7 @@
   },
   "ID_OCUPA_N": {
     "nome": "ID_OCUPA_N",
-    "descricao": "Campo ID_OCUPA_N - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "que é\nrefere-se as atividades",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -650,7 +650,7 @@
   },
   "ID_PAIS": {
     "nome": "ID_PAIS",
-    "descricao": "Campo ID_PAIS - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Campo Obrigatório\no paciente por Se UF for digitada este",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -658,7 +658,7 @@
   },
   "ID_UNIDADE": {
     "nome": "ID_UNIDADE",
-    "descricao": "ID_UNIDADE. Campo Obrigatório. Ao preencher o código, a descrição é preenchida automaticamente e vice-versa",
+    "descricao": "tabela do Nome completo e\nde unidade de saúde\nSaúde abrangência da unidade",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -666,7 +666,7 @@
   },
   "INFAN_JUV": {
     "nome": "INFAN_JUV",
-    "descricao": "INFAN_JUV. Campo obrigatório",
+    "descricao": "Informar se houve\nencaminhamento\ninfência e da juventude",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -678,7 +678,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "LESAO_ESPE": {
     "nome": "LESAO_ESPE",
@@ -686,7 +686,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "LESAO_NAT": {
     "nome": "LESAO_NAT",
@@ -694,19 +694,19 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "LES_AUTOP": {
     "nome": "LES_AUTOP",
-    "descricao": "Campo LES_AUTOP - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se violência\nautoprovocada\nreligiosa",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "LOCAL_ESPE": {
     "nome": "LOCAL_ESPE",
-    "descricao": "Campo LOCAL_ESPE - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se a violência\nocorrência",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -714,7 +714,7 @@
   },
   "LOCAL_OCOR": {
     "nome": "LOCAL_OCOR",
-    "descricao": "Campo LOCAL_OCOR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Especificar outro\nconstrução\ndo evento notificado",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -722,7 +722,7 @@
   },
   "MPU": {
     "nome": "MPU",
-    "descricao": "MPU. Campo obrigatório",
+    "descricao": "Informar se houve",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -734,7 +734,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "NUM_ENVOLV": {
     "nome": "NUM_ENVOLV",
@@ -746,7 +746,7 @@
   },
   "NU_ANO": {
     "nome": "Ano da notificação",
-    "descricao": "Ano da notificação - Variável interna preenchida pelo sistema. Variável interna preenchida pelo sistema a partir da data de notificação",
+    "descricao": "Ano da notificação\nSigla da Unidade\nonde está localizada\nde saúde (ou outra\ne siglas",
     "tipo": "varchar(4)",
     "obrigatorio": false,
     "categoria": null,
@@ -754,7 +754,7 @@
   },
   "NU_IDADE_N": {
     "nome": "NU_IDADE_N",
-    "descricao": "Campo NU_IDADE_N - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "data da ocorrência\n4018 – aparente.\naquela referida por\ndesse dado é registrada",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -762,19 +762,19 @@
   },
   "ORIENT_SEX": {
     "nome": "ORIENT_SEX",
-    "descricao": "Campo ORIENT_SEX - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Orientação sexual\nMulher\nHomem Identidade de gênero",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "OUT_VEZES": {
     "nome": "OUT_VEZES",
-    "descricao": "Campo OUT_VEZES - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se a violência\nrepetição\nInformar se a lesão",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "PEN_ANAL": {
     "nome": "PEN_ANAL",
@@ -802,7 +802,7 @@
   },
   "PROC_ABORT": {
     "nome": "PROC_ABORT",
-    "descricao": "Campo PROC_ABORT - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "previsto em lei",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -810,7 +810,7 @@
   },
   "PROC_CONTR": {
     "nome": "PROC_CONTR",
-    "descricao": "Campo PROC_CONTR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\ncontracepção de emergencia",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -818,7 +818,7 @@
   },
   "PROC_DST": {
     "nome": "PROC_DST",
-    "descricao": "Campo PROC_DST - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nDST",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -826,7 +826,7 @@
   },
   "PROC_HEPB": {
     "nome": "PROC_HEPB",
-    "descricao": "Campo PROC_HEPB - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nInformar se ocorreu\nhepatite B\nHIV",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -834,7 +834,7 @@
   },
   "PROC_HIV": {
     "nome": "PROC_HIV",
-    "descricao": "Campo PROC_HIV - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nDST",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -842,7 +842,7 @@
   },
   "PROC_SANG": {
     "nome": "PROC_SANG",
-    "descricao": "Campo PROC_SANG - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nsangue",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -850,7 +850,7 @@
   },
   "PROC_SEMEN": {
     "nome": "PROC_SEMEN",
-    "descricao": "Campo PROC_SEMEN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "semen",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -858,7 +858,7 @@
   },
   "PROC_VAGIN": {
     "nome": "PROC_VAGIN",
-    "descricao": "Campo PROC_VAGIN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nsecreção vaginal\nInformar se ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -866,7 +866,7 @@
   },
   "REDE_EDUCA": {
     "nome": "REDE_EDUCA",
-    "descricao": "REDE_EDUCA. Campo obrigatório",
+    "descricao": "no setor da Campo obrigatório",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
@@ -878,11 +878,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_CAT": {
     "nome": "REL_CAT",
-    "descricao": "REL_CAT. Categoria=8 se campo 66. Violência relacionada ao trabalho for = 2 ou 9. Se campo 66. Violência relacionada ao trabalho for = 1 não permitir a categoria 8. Não se aplica",
+    "descricao": "Informar se foi emitida caso a violência seja no trabalho",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -890,75 +890,75 @@
   },
   "REL_CONHEC": {
     "nome": "REL_CONHEC",
-    "descricao": "Campo REL_CONHEC - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável autor da agressão eram amigo(s)/ conhecido(s)",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_CONJ": {
     "nome": "REL_CONJ",
-    "descricao": "Campo REL_CONJ - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável autor da agressão era o cônjuge",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_CUIDA": {
     "nome": "REL_CUIDA",
-    "descricao": "Campo REL_CUIDA - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável autor da agressão era o cuidador",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_DESCO": {
     "nome": "REL_DESCO",
-    "descricao": "Campo REL_DESCO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável autor da agressão era desconhecido",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_ESPEC": {
     "nome": "REL_ESPEC",
-    "descricao": "REL_ESPEC. Campo Obrigatório se campo 61. Relação com a pessoa atendida – Outros =1",
+    "descricao": "Especificar outro tipo de relação com a pessoa atendida",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_EXCON": {
     "nome": "REL_EXCON",
-    "descricao": "Campo REL_EXCON - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era o ex-cônjuge",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_EXNAM": {
     "nome": "REL_EXNAM",
-    "descricao": "Campo REL_EXNAM - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o (a)\nagressão era o ex-namorado(a)",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_FILHO": {
     "nome": "REL_FILHO",
-    "descricao": "Campo REL_FILHO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nInformar se o provável\n(a) da agressão eram\nagressão era irmão\nfilha",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_INST": {
     "nome": "REL_INST",
-    "descricao": "Campo REL_INST - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era pessoa\ninstitucional",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_IRMAO": {
     "nome": "REL_IRMAO",
@@ -966,79 +966,79 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_MAD": {
     "nome": "REL_MAD",
-    "descricao": "Campo REL_MAD - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era a madrasta",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_MAE": {
     "nome": "REL_MAE",
-    "descricao": "Campo REL_MAE - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era a mãe",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_NAMO": {
     "nome": "REL_NAMO",
-    "descricao": "Campo REL_NAMO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era o namorado(a)",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_OUTROS": {
     "nome": "REL_OUTROS",
-    "descricao": "REL_OUTROS. Campo obrigatório. Se categoria=2 ou 9, pular para campo 62. Sexo do provável autor da agressão",
+    "descricao": "Especificar outro\nrelação",
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_PAD": {
     "nome": "REL_PAD",
-    "descricao": "Campo REL_PAD - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era o padrasto",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_PAI": {
     "nome": "REL_PAI",
-    "descricao": "Campo REL_PAI - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era o pai",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_PATRAO": {
     "nome": "REL_PATRAO",
-    "descricao": "Campo REL_PATRAO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era o patrão/chefe",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_POL": {
     "nome": "REL_POL",
-    "descricao": "Campo REL_POL - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável\nagressão era policial/agente\nlei",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_PROPRI": {
     "nome": "REL_PROPRI",
-    "descricao": "Campo REL_PROPRI - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o provável autor da agressão era a própria pessoa",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_SEXUAL": {
     "nome": "REL_SEXUAL",
@@ -1046,11 +1046,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "REL_TRAB": {
     "nome": "Violência relacionada ao trabalho",
-    "descricao": "Informar se ocorreu violência relacionada ao trabalho. Campo Essencial. Se categoria=2 ou 9 pular para o campo 68. Circunstância da lesão",
+    "descricao": "relacionada ao trabalho",
     "tipo": "varchar2(1)",
     "obrigatorio": false,
     "categoria": {
@@ -1058,11 +1058,11 @@
       "2": "Não",
       "9": "Ignorado"
     },
-    "relevante": false
+    "relevante": true
   },
   "SEM_NOT": {
     "nome": "Semana epidemiológica da notificação",
-    "descricao": "Semanas do calendário epidemiológico padronizado (AAAASS). Preenchida automaticamente, a partir da data de notificação (AAAASS)",
+    "descricao": "caso foi notificado.",
     "tipo": "varchar2(6)",
     "obrigatorio": false,
     "categoria": "Preenchida automaticamente",
@@ -1070,7 +1070,7 @@
   },
   "SEM_PRI": {
     "nome": "SEM_PRI",
-    "descricao": "SEM_PRI. Preenchida automaticamente, a partir da data de primeiros sintomas data do diagnóstico. (AAAASS)",
+    "descricao": "números sintomas.",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1078,7 +1078,7 @@
   },
   "SEX_ASSEDI": {
     "nome": "SEX_ASSEDI",
-    "descricao": "Campo SEX_ASSEDI - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "sexual",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1086,7 +1086,7 @@
   },
   "SEX_ESPEC": {
     "nome": "SEX_ESPEC",
-    "descricao": "Campo SEX_ESPEC - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Especificar qual outro\nviolência sexual\nInformar se ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1094,7 +1094,7 @@
   },
   "SEX_ESTUPR": {
     "nome": "SEX_ESTUPR",
-    "descricao": "Campo SEX_ESTUPR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1102,7 +1102,7 @@
   },
   "SEX_EXPLO": {
     "nome": "SEX_EXPLO",
-    "descricao": "Campo SEX_EXPLO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nsexual",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1110,7 +1110,7 @@
   },
   "SEX_OUTRO": {
     "nome": "SEX_OUTRO",
-    "descricao": "Campo SEX_OUTRO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Especificar qual outro\nde violência sexual",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1118,7 +1118,7 @@
   },
   "SEX_PORNO": {
     "nome": "SEX_PORNO",
-    "descricao": "Campo SEX_PORNO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\ninfantil\nInformar se ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1134,15 +1134,15 @@
   },
   "SG_UF": {
     "nome": "SG_UF",
-    "descricao": "Campo SG_UF - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "paciente (sem abreviações)\ne siglas Sigla da Unidade",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "SG_UF_NOT": {
     "nome": "UF de Notificação",
-    "descricao": "Sigla da Unidade Federativa onde está localizada a unidade de saúde. Campo Obrigatório",
+    "descricao": "Código do município\ncódigo na tabela.\n(ou outra fonte notificadora)\ne nome\nIBGE\nlocalizada a unidade\nnotificação. A sigla\nnotificadora) que\nvariável que está",
     "tipo": "varchar2(2)",
     "obrigatorio": true,
     "categoria": "Tabela com Códigos e siglas padronizados pelo IBGE",
@@ -1150,7 +1150,7 @@
   },
   "SG_UF_OCOR": {
     "nome": "SG_UF_OCOR",
-    "descricao": "Campo SG_UF_OCOR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "ocorrência do evento\nIBGE\nocasião da notificação\ne nomes Código e nome do",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1158,11 +1158,11 @@
   },
   "SIT_CONJUG": {
     "nome": "SIT_CONJUG",
-    "descricao": "Campo SIT_CONJUG - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "NET)\neconômicas desenvolvidas\nprocessos de produção\nprimário (agricultura\nextrativismo); secundário\n(indústria) ou terciário\ne comércio).\nSituação conjugal",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "TPUNINOT": {
     "nome": "TPUNINOT",
@@ -1170,11 +1170,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "TP_NOT": {
     "nome": "Tipo de Notificação",
-    "descricao": "Identifica o tipo da notificação. Campo Obrigatório",
+    "descricao": "Identifica o tipo da\ndo sistema\n–CID\nNome e código do\nnotificação\nnotificado segundo\nestadual",
     "tipo": "varchar2(1)",
     "obrigatorio": true,
     "categoria": {
@@ -1187,7 +1187,7 @@
   },
   "TRAN_COMP": {
     "nome": "TRAN_COMP",
-    "descricao": "Campo TRAN_COMP - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Se o paciente possui",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1195,7 +1195,7 @@
   },
   "TRAN_MENT": {
     "nome": "TRAN_MENT",
-    "descricao": "Campo TRAN_MENT - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "de transtorno mental",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -1203,98 +1203,98 @@
   },
   "VIOL_ESPEC": {
     "nome": "VIOL_ESPEC",
-    "descricao": "Campo VIOL_ESPEC - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se o meio\nviolência ocorreu.",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_FINAN": {
     "nome": "VIOL_FINAN",
-    "descricao": "Campo VIOL_FINAN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_FISIC": {
     "nome": "VIOL_FISIC",
-    "descricao": "Campo VIOL_FISIC - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nfísica",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_INFAN": {
     "nome": "VIOL_INFAN",
-    "descricao": "Campo VIOL_INFAN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\ninfantil",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_LEGAL": {
     "nome": "VIOL_LEGAL",
-    "descricao": "Campo VIOL_LEGAL - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nlegal",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_MOTIV": {
     "nome": "VIOL_MOTIV",
-    "descricao": "Campo VIOL_MOTIV - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nde rua vitima\ngeracional relação com caractéristicas",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_NEGLI": {
     "nome": "VIOL_NEGLI",
-    "descricao": "Campo VIOL_NEGLI - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nInformar se ocorreu\nfinanceira/econômica\nnegligencia/abandono",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_OUTR": {
     "nome": "VIOL_OUTR",
-    "descricao": "Campo VIOL_OUTR - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Especificar que outro\nde violência",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_PSICO": {
     "nome": "VIOL_PSICO",
-    "descricao": "Campo VIOL_PSICO - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Campo obrigatório\nviolência",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_SEXU": {
     "nome": "VIOL_SEXU",
-    "descricao": "Campo VIOL_SEXU - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nsexual",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_TORT": {
     "nome": "VIOL_TORT",
-    "descricao": "Campo VIOL_TORT - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Informar se ocorreu\nInformar se ocorreu",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "VIOL_TRAF": {
     "nome": "VIOL_TRAF",
-    "descricao": "Campo VIOL_TRAF - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "seres humanos",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   }
 }
