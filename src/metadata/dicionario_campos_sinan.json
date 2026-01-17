@@ -5,6 +5,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
     "relevante": true
   },
   "AG_CORTE": {
@@ -13,7 +18,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_ENFOR": {
     "nome": "AG_ENFOR",
@@ -21,7 +31,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_ENVEN": {
     "nome": "AG_ENVEN",
@@ -29,7 +44,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_ESPEC": {
     "nome": "AG_ESPEC",
@@ -37,6 +57,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
+    "binario": false,
     "relevante": false
   },
   "AG_FOGO": {
@@ -45,15 +66,25 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_FORCA": {
     "nome": "AG_FORCA",
-    "descricao": "de agressão Campo Essencial",
+    "descricao": "Informar se o meio de agressão foi através de força corporal",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_OBJETO": {
     "nome": "AG_OBJETO",
@@ -61,7 +92,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_OUTROS": {
     "nome": "AG_OUTROS",
@@ -69,7 +105,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AG_QUENTE": {
     "nome": "AG_QUENTE",
@@ -77,7 +118,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "ANO_NASC": {
     "nome": "ANO_NASC",
@@ -85,7 +131,8 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "binario":false,
+    "relevante": false
   },
   "ASSIST_SOC": {
     "nome": "ASSIST_SOC",
@@ -93,7 +140,12 @@
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "ATEND_MULH": {
     "nome": "ATEND_MULH",
@@ -101,6 +153,11 @@
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
     "relevante": true
   },
   "AUTOR_ALCO": {
@@ -109,7 +166,12 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "binario": true,
+    "valores_binarios": {
+      "1": "Sim",
+      "2": "Não"
+    },
+    "relevante": true
   },
   "AUTOR_SEXO": {
     "nome": "Sexo do provável autor da violência",
@@ -122,19 +184,27 @@
       "3": "Ambos os sexos",
       "9": "Ignorado"
     },
+    "binario": false,
     "relevante": true
   },
   "CICL_VID": {
     "nome": "CICL_VID",
-    "descricao": "CICL_VID. Campo obrigatório",
+    "descricao": "Ciclo de vida da vítima",
     "tipo": "varchar2",
     "obrigatorio": true,
-    "categoria": null,
-    "relevante": false
+    "categoria": {
+      "1": "Criança",
+      "2": "Adolescente",
+      "3": "Jovem",
+      "4": "Pessoa adulta",
+      "5": "Pessoa idosa",
+      "9": "Ignorado"
+    },
+    "relevante": true
   },
   "CIRC_LESAO": {
     "nome": "Circunstância da lesão",
-    "descricao": "Nome e código do\n- CID\ndo sistema\nnotificado segundo",
+    "descricao": "Nome e código do agravo notificado segundo CID-10 - CAPITULO XX (VO1 a Y98)",
     "tipo": "varchar2(5)",
     "obrigatorio": false,
     "categoria": "Tabela de agravos do sistema com códigos CID-10",
@@ -142,7 +212,7 @@
   },
   "CLASSI_FIN": {
     "nome": "CLASSI_FIN",
-    "descricao": "Campo CLASSI_FIN - Descrição a ser preenchida conforme dicionário SINAN",
+    "descricao": "Classificação Financeira?",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -241,7 +311,9 @@
     "descricao": "Considerando a última instrução incompleto concluída com aprovação ou 2° grau) grau de instrução completo por ocasião da notificação. ou 2° grau) Número do cartão",
     "tipo": "varchar2",
     "obrigatorio": false,
-    "categoria": null,
+    "categoria": {
+
+    },
     "relevante": true
   },
   "CS_GESTANT": {
@@ -266,7 +338,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DEFEN_PUBL": {
     "nome": "DEFEN_PUBL",
@@ -282,7 +354,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DEF_ESPEC": {
     "nome": "DEF_ESPEC",
@@ -290,7 +362,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DEF_FISICA": {
     "nome": "DEF_FISICA",
@@ -298,7 +370,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DEF_MENTAL": {
     "nome": "DEF_MENTAL",
@@ -306,7 +378,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DEF_OUT": {
     "nome": "DEF_OUT",
@@ -314,7 +386,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DEF_TRANS": {
     "nome": "DEF_TRANS",
@@ -330,7 +402,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "DELEG": {
     "nome": "DELEG",
@@ -386,7 +458,7 @@
     "tipo": "date",
     "obrigatorio": false,
     "categoria": "Data >= data da notificação",
-    "relevante": true
+    "relevante": false
   },
   "DT_INVEST": {
     "nome": "DT_INVEST",
@@ -598,7 +670,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "IDENT_GEN": {
     "nome": "IDENT_GEN",
@@ -614,7 +686,7 @@
     "tipo": "varchar2(4)",
     "obrigatorio": true,
     "categoria": "Tabela de agravos do sistema com códigos CID-10",
-    "relevante": true
+    "relevante": false
   },
   "ID_MN_OCOR": {
     "nome": "ID_MN_OCOR",
@@ -734,7 +806,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "NUM_ENVOLV": {
     "nome": "NUM_ENVOLV",
@@ -758,7 +830,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": false
+    "relevante": true
   },
   "ORIENT_SEX": {
     "nome": "ORIENT_SEX",
@@ -878,11 +950,11 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "REL_CAT": {
     "nome": "REL_CAT",
-    "descricao": "Informar se foi emitida caso a violência seja no trabalho",
+    "descricao": "Informar se foi emitida a CAT (Comunicação de Acidente de Trabalho) caso a violência seja no trabalho",
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
@@ -926,7 +998,7 @@
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "REL_EXCON": {
     "nome": "REL_EXCON",
@@ -1046,7 +1118,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "REL_TRAB": {
     "nome": "Violência relacionada ao trabalho",
@@ -1170,7 +1242,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "TP_NOT": {
     "nome": "Tipo de Notificação",
@@ -1207,7 +1279,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "VIOL_FINAN": {
     "nome": "VIOL_FINAN",
@@ -1243,11 +1315,25 @@
   },
   "VIOL_MOTIV": {
     "nome": "VIOL_MOTIV",
-    "descricao": "Informar se ocorreu\nde rua vitima\ngeracional relação com caractéristicas",
+    "descricao": "Informar se violência tem relação com caractéristicas da vitima",
     "tipo": "varchar2",
     "obrigatorio": false,
-    "categoria": null,
-    "relevante": true
+    "categoria": {
+      "01. Sexismo": "Sexismo",
+      "02. Homofobia/Lesbofobia": "Homofobia/Lesbofobia",
+      "Bifobia/Transfobia": "Bifobia/Transfobia",
+      "03. Racismo": "Racismo",
+      "04. Intolerância religiosa": "Intolerância religiosa",
+      "05. Xenofobia": "Xenofobia",
+      "06. Conflito geracional": "Conflito geracional",
+      "07. Situação de rua": "Situação de rua",
+      "08. Deficiência": "Deficiência",
+      "09. Outros": "Outros",
+      "88. Não se aplica": "Não se aplica",
+      "99. Ignorado": "Ignorado"
+    },
+    "binario": false,
+    "relevante": false
   },
   "VIOL_NEGLI": {
     "nome": "VIOL_NEGLI",
