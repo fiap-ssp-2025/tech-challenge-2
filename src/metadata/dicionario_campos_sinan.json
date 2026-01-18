@@ -145,7 +145,7 @@
       "1": "Sim",
       "2": "Não"
     },
-    "relevante": true
+    "relevante": false
   },
   "ATEND_MULH": {
     "nome": "ATEND_MULH",
@@ -158,7 +158,7 @@
       "1": "Sim",
       "2": "Não"
     },
-    "relevante": true
+    "relevante": false
   },
   "AUTOR_ALCO": {
     "nome": "AUTOR_ALCO",
@@ -554,7 +554,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_DEAM": {
     "nome": "ENC_DEAM",
@@ -562,7 +562,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+      "relevante": false
   },
   "ENC_DELEG": {
     "nome": "ENC_DELEG",
@@ -570,7 +570,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_DPCA": {
     "nome": "ENC_DPCA",
@@ -578,7 +578,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_ESPEC": {
     "nome": "ENC_ESPEC",
@@ -586,7 +586,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_IML": {
     "nome": "ENC_IML",
@@ -594,7 +594,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_MPU": {
     "nome": "ENC_MPU",
@@ -602,7 +602,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_MULHER": {
     "nome": "ENC_MULHER",
@@ -610,7 +610,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_OUTR": {
     "nome": "ENC_OUTR",
@@ -618,7 +618,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_SAUDE": {
     "nome": "Encaminhamento - Rede da Saúde",
@@ -630,7 +630,7 @@
       "2": "Não",
       "9": "Ignorado"
     },
-    "relevante": true
+    "relevante": false
   },
   "ENC_SENTIN": {
     "nome": "ENC_SENTIN",
@@ -638,7 +638,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_TUTELA": {
     "nome": "ENC_TUTELA",
@@ -646,7 +646,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ENC_VARA": {
     "nome": "ENC_VARA",
@@ -654,7 +654,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "EVOLUCAO": {
     "nome": "EVOLUCAO",
@@ -662,7 +662,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "HORA_OCOR": {
     "nome": "HORA_OCOR",
@@ -750,7 +750,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "LESAO_ESPE": {
     "nome": "LESAO_ESPE",
@@ -758,7 +758,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "LESAO_NAT": {
     "nome": "LESAO_NAT",
@@ -766,7 +766,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "LES_AUTOP": {
     "nome": "LES_AUTOP",
@@ -774,7 +774,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "LOCAL_ESPE": {
     "nome": "LOCAL_ESPE",
@@ -830,7 +830,7 @@
     "tipo": "varchar2",
     "obrigatorio": false,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "ORIENT_SEX": {
     "nome": "ORIENT_SEX",
