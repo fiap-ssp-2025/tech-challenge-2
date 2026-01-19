@@ -304,7 +304,7 @@
     "tipo": "varchar2",
     "obrigatorio": true,
     "categoria": null,
-    "relevante": true
+    "relevante": false
   },
   "CS_ESCOL_N": {
     "nome": "CS_ESCOL_N",
