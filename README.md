@@ -51,9 +51,7 @@ Execute os notebooks em ordem numérica:
 1. `01_extract_sinan_data.ipynb`
 2. `02_data_preprocessing.ipynb`
 3. `03_correlation.ipynb`
-4. `04_logistic_regression.ipynb`
-5. `05_knn.ipynb`
-6. `06_random_forest.ipynb`
+4. `04_model_comparison.ipynb`
 
 ## 👥 Integrantes
 
