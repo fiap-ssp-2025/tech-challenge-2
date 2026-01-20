@@ -1,6 +1,10 @@
 # Análise Preditiva da Recorrência da Violência contra a Mulher  
 ## Um Estudo com Dados do SINAN
 
+[Link do Repositório no Github](https://github.com/fiap-ssp-2025/tech-challenge-1.git)
+
+[Link do Vídeo Explicatório]()
+
 ---
 
 ## 1. Introdução
