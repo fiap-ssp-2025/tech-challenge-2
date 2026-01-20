@@ -64,7 +64,7 @@ Esses achados já sugerem que a recorrência da violência pode estar associada 
 
 ### 3.1 Seleção de variáveis relevantes
 
-Dado o grande número de variáveis disponíveis (160) e a ausência de documentação completa para todas elas, foi criado um **dicionário de dados próprio** (`dicionario_campos_sinan.json`) que classificou cada campo como relevante ou não para o estudo. Esta estratégia permitiu:
+Dado o grande número de variáveis disponíveis (160) e a ausência de documentação completa para todas elas, foi criado um **dicionário de dados próprio** ([`dicionario_campos_sinan.json`](../src/metadata/dicionario_campos_sinan.json)) que classificou cada campo como relevante ou não para o estudo. Esta estratégia permitiu:
 
 - Focar em variáveis com potencial preditivo. Isso nos fez excluir boa partes dos campos que se referiam informações relacionadas ao pós-eventos (encaminhamentos, evolução etc.).
 - Eliminar campos redundantes ou de baixa qualidade
