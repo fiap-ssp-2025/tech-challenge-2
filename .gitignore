@@ -1,5 +1,5 @@
 .cache/
-.venv_pdf/
+.venv/
 
 # Python
 __pycache__/
