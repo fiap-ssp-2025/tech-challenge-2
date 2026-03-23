@@ -1,5 +1,3 @@
-# src/optimize_ga.py
-
 import random
 from copy import deepcopy
 from pathlib import Path
@@ -9,8 +7,15 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import recall_score, f1_score, roc_auc_score
+from sklearn.metrics import (
+    recall_score,
+    f1_score,
+    roc_auc_score,
+    confusion_matrix,
+    precision_score,
+)
 from sklearn.model_selection import train_test_split
+from src.evaluation.fairness import evaluate_by_group
 
 TARGET_COLUMN = "OUT_VEZES"
 BASE_PATH = Path(__file__).resolve().parent.parent
@@ -42,7 +47,7 @@ def load_data():
         X_encoded, y, test_size=0.3, random_state=42, stratify=y
     )
 
-    return X_encoded, y, X_train, X_test, y_train, y_test
+    return df, X_encoded, y, X_train, X_test, y_train, y_test
 
 
 N_ESTIMATORS_OPTIONS = [100, 200, 300, 400]
@@ -67,7 +72,7 @@ def create_individual():
     }
 
 
-def fitness(individual, X_train, X_test, y_train, y_test):
+def fitness(individual, X_train, X_test, y_train, y_test, fitness_mode="current"):
     model = RandomForestClassifier(
         n_estimators=individual["n_estimators"],
         max_depth=individual["max_depth"],
@@ -86,10 +91,27 @@ def fitness(individual, X_train, X_test, y_train, y_test):
     recall = recall_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
     roc_auc = roc_auc_score(y_test, y_prob)
+    precision = precision_score(y_test, y_pred, zero_division=0)
 
-    score = 0.5 * recall + 0.3 * f1 + 0.2 * roc_auc
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+    specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
 
-    return score, {"recall": recall, "f1": f1, "roc_auc": roc_auc}
+    if fitness_mode == "current":
+        score = 0.5 * recall + 0.3 * f1 + 0.2 * roc_auc
+    elif fitness_mode == "balanced":
+        score = 0.4 * recall + 0.3 * f1 + 0.2 * specificity + 0.1 * roc_auc
+    elif fitness_mode == "clinical":
+        score = 0.6 * recall + 0.2 * f1 + 0.2 * specificity
+    else:
+        raise ValueError(f"fitness_mode inválido: {fitness_mode}")
+
+    return score, {
+        "recall": float(recall),
+        "f1": float(f1),
+        "roc_auc": float(roc_auc),
+        "precision": float(precision),
+        "specificity": float(specificity),
+    }
 
 
 def select_parent(population, fitnesses, tournament_size=3):
@@ -137,8 +159,8 @@ def mutate(individual):
     return mutant
 
 
-def run_genetic_algorithm():
-    X, y, X_train, X_test, y_train, y_test = load_data()
+def run_genetic_algorithm(fitness_mode="balanced"):
+    df, X, y, X_train, X_test, y_train, y_test = load_data()
 
     population = [create_individual() for _ in range(POPULATION_SIZE)]
 
@@ -150,11 +172,12 @@ def run_genetic_algorithm():
         scored_population = []
 
         for individual in population:
-            score, metrics = fitness(individual, X_train, X_test, y_train, y_test)
+            score, metrics = fitness(
+                individual, X_train, X_test, y_train, y_test, fitness_mode=fitness_mode
+            )
             scored_population.append((individual, score, metrics))
 
         scored_population.sort(key=lambda x: x[1], reverse=True)
-
         generation_best = scored_population[0]
 
         if generation_best[1] > best_fitness:
@@ -162,10 +185,10 @@ def run_genetic_algorithm():
             best_fitness = generation_best[1]
             best_metrics = generation_best[2]
 
-        print(f"\nGeração {generation + 1}")
+        print(f"\nGeração {generation + 1} | fitness_mode={fitness_mode}")
         print(f"Melhor indivíduo: {generation_best[0]}")
         print(f"Fitness: {generation_best[1]:.4f}")
-        print(f"Métricas: {generation_best[2]}")
+        print(f"Métricas durante busca: {generation_best[2]}")
 
         new_population = [deepcopy(item[0]) for item in scored_population[:ELITISM]]
 
@@ -184,7 +207,7 @@ def run_genetic_algorithm():
     print("\n=== Melhor solução encontrada ===")
     print(best_individual)
     print(f"Best fitness: {best_fitness:.4f}")
-    print(f"Best metrics: {best_metrics}")
+    print(f"Best metrics (durante busca): {best_metrics}")
 
     final_model = RandomForestClassifier(
         **best_individual,
@@ -192,17 +215,56 @@ def run_genetic_algorithm():
         n_jobs=-1,
     )
 
+    # modelo final treinado com todo o dataset
     final_model.fit(X, y)
+
+    # métricas do modelo final salvo
+    y_pred_final = final_model.predict(X_test)
+    y_prob_final = final_model.predict_proba(X_test)[:, 1]
+
+    recall_final = recall_score(y_test, y_pred_final)
+    f1_final = f1_score(y_test, y_pred_final)
+    roc_auc_final = roc_auc_score(y_test, y_prob_final)
+    precision_final = precision_score(y_test, y_pred_final, zero_division=0)
+
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred_final).ravel()
+    specificity_final = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+
+    final_metrics = {
+        "recall": float(recall_final),
+        "f1": float(f1_final),
+        "roc_auc": float(roc_auc_final),
+        "precision": float(precision_final),
+        "specificity": float(specificity_final),
+    }
+
+    print("\n=== Métricas do modelo final salvo ===")
+    print(final_metrics)
+
+    # avaliação por grupo
+    group_metrics = evaluate_by_group(
+        model=final_model,
+        X_test=X_test,
+        y_test=y_test,
+        original_df=df,
+        group_column="CS_RACA",
+    )
+
+    print("\n=== Avaliação por grupo ===")
+    print(group_metrics)
 
     artifact = {
         "model": final_model,
         "features": X.columns.tolist(),
         "params": best_individual,
-        "fitness": best_fitness,
-        "metrics": best_metrics,
+        "fitness": float(best_fitness),
+        "metrics": final_metrics,
+        "search_metrics": best_metrics,
+        "group_metrics": group_metrics,
+        "fitness_mode": fitness_mode,
     }
 
-    model_path = BASE_PATH / "models" / "random_forest.pkl"
+    model_path = BASE_PATH / "models" / f"random_forest_{fitness_mode}.pkl"
     model_path.parent.mkdir(parents=True, exist_ok=True)
 
     joblib.dump(artifact, model_path)
@@ -210,4 +272,4 @@ def run_genetic_algorithm():
 
 
 if __name__ == "__main__":
-    run_genetic_algorithm()
+    run_genetic_algorithm(fitness_mode="balanced")
