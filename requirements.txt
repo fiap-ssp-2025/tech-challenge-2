@@ -5,3 +5,12 @@ joblib>=1.2.0
 shap>=0.43.0
 openai>=1.0.0
 python-dotenv>=1.0.0
+pyarrow>=10.0.0
+
+# Geolocalização e Visualização
+folium>=0.15.0
+streamlit-folium>=0.18.0
+matplotlib>=3.7.0
+
+# Notebook
+ipykernel>=6.25.0
