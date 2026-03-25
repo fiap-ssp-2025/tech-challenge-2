@@ -15,5 +15,8 @@ __pycache__/
 .DS_Store
 .vscode/
 
+# Modelos treinados (muito grandes para o GitHub)
+models/*.pkl
+
 #Environment variables
 .env

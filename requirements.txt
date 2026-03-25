@@ -5,3 +5,4 @@ joblib>=1.2.0
 shap>=0.43.0
 openai>=1.0.0
 python-dotenv>=1.0.0
+matplotlib>=3.7.0
