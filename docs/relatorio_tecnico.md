@@ -13,7 +13,7 @@ Grupo SSPDF
 | Leonardo Barbosa Nogueira |
 | Jose Flavio Neto |
 | Pedro Matias dos Santos |
-| Rodrigo Oliveira de Andrade |
+| Wellington Oliveira de Andrade |
 
 ---
 

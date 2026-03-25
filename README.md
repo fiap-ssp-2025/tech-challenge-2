@@ -60,10 +60,10 @@ Abra e execute `notebooks/shap_random_forest_violencia_mulher.ipynb` no Jupyter 
 
 ## Integrantes
 
-| Nome                        |
-| --------------------------- |
-| Marcelo Arruda de Siqueira  |
-| Leonardo Barbosa Nogueira   |
-| Jose Flavio Neto            |
-| Pedro Matias dos Santos     |
-| Rodrigo Oliveira de Andrade |
+| Nome                           |
+| ------------------------------ |
+| Marcelo Arruda de Siqueira     |
+| Leonardo Barbosa Nogueira      |
+| Jose Flavio Neto               |
+| Pedro Matias dos Santos        |
+| Wellington Oliveira de Andrade |
