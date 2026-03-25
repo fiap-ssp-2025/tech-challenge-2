@@ -12,7 +12,7 @@ from src.explain.shap_explainer import get_shap_values
 from src.optimize_ga import load_data
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-# from src.llm.llm_explainer import explain_case
+from src.llm.llm_explainer import explain_case
 
 st.set_page_config(
     page_title="Avaliação de Risco de Violência Doméstica",
@@ -79,27 +79,50 @@ expected_features = artifact["features"]
 # ── Funções auxiliares ────────────────────────────────────────────────────────
 
 
-def build_prediction_row(expected_features, idade, relacao, viol_psico, ameaca, alcool):
+CATEGORICAL_OPTIONS = {
+    "SIT_CONJUG": ["Casado/ União", "Não se aplica", "Separado", "Solteiro", "Viúvo"],
+    "ESCOLARIDADE": [
+        "ENSINO_MEDIO_COMPLETO",
+        "ENSINO_MEDIO_INCOMPLETO",
+        "ENSINO_SUPERIOR",
+        "FUNDAMENTAL_INCOMPLETO",
+    ],
+    "AUTOR_SEXO": ["Ambos", "Feminino", "Ignorado", "Masculino"],
+    "CICL_VID": [
+        "Adolescente",
+        "Criança",
+        "Ignorado",
+        "Jovem",
+        "Pessoa adulta",
+        "Pessoa idosa",
+    ],
+    "SG_UF": [
+        "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG",
+        "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR",
+        "RS", "SC", "SE", "SP", "TO",
+    ],
+    "DIA_SEMANA_OCOR": ["DOM", "QUA", "QUI", "SAB", "SEG", "SEX", "TER"],
+}
+
+BINARY_FEATURES = [
+    "AG_AMEACA", "AG_ENFOR", "AUTOR_ALCO",
+    "VIOL_PSICO", "VIOL_FISIC", "VIOL_FINAN", "VIOL_SEXU",
+    "REL_PARCEIRO_INTIMO", "REL_FAMILIAR", "REL_CONHECIDO",
+    "REL_INSTITUCIONAL", "REL_OUTROS_FLAG",
+    "DEF_TRANS", "CIRC_LESAO_FAMILIA",
+]
+
+
+def build_prediction_row(expected_features, binary_vals, categorical_vals):
     row = {f: 0 for f in expected_features}
 
-    if "AG_AMEACA" in row:
-        row["AG_AMEACA"] = 1 if ameaca else 0
-    if "AUTOR_ALCO" in row:
-        row["AUTOR_ALCO"] = 1 if alcool else 0
-    if "VIOL_PSICO" in row:
-        row["VIOL_PSICO"] = 1 if viol_psico else 0
-    if "IDADE" in row:
-        row["IDADE"] = idade
+    for feat in BINARY_FEATURES:
+        if feat in row:
+            row[feat] = 1 if binary_vals.get(feat) else 0
 
-    relacao_code = {
-        "parceiro_intimo": 1,
-        "familiar": 2,
-        "conhecido": 3,
-        "outros": 0,
-    }.get(relacao, 0)
-
-    if "SIT_CONJUG" in row:
-        row["SIT_CONJUG"] = relacao_code
+    for feat, options in CATEGORICAL_OPTIONS.items():
+        if feat in row and feat in categorical_vals:
+            row[feat] = options.index(categorical_vals[feat])
 
     return row
 
@@ -114,26 +137,71 @@ if page == "Simulação de Risco":
     )
 
     with st.form("form_simulacao"):
-        col_form1, col_form2 = st.columns(2)
+        st.markdown("##### Relação com o agressor")
+        rc1, rc2, rc3 = st.columns(3)
+        rel_parceiro = rc1.checkbox("Parceiro íntimo")
+        rel_familiar = rc1.checkbox("Familiar")
+        rel_conhecido = rc2.checkbox("Conhecido")
+        rel_institucional = rc2.checkbox("Institucional")
+        rel_outros = rc3.checkbox("Outros")
 
-        with col_form1:
-            idade = st.slider("Idade da vítima", 10, 80, 30)
-            relacao = st.selectbox(
-                "Relação com agressor",
-                ["parceiro_intimo", "familiar", "conhecido", "outros"],
-            )
+        st.markdown("##### Tipos de violência")
+        vc1, vc2, vc3, vc4 = st.columns(4)
+        viol_psico = vc1.checkbox("Psicológica")
+        viol_fisic = vc2.checkbox("Física")
+        viol_finan = vc3.checkbox("Financeira")
+        viol_sexu = vc4.checkbox("Sexual")
 
-        with col_form2:
-            viol_psico = st.checkbox("Violência psicológica")
-            ameaca = st.checkbox("Ameaça")
-            alcool = st.checkbox("Uso de álcool pelo agressor")
+        st.markdown("##### Meios de agressão")
+        ac1, ac2 = st.columns(2)
+        ameaca = ac1.checkbox("Ameaça")
+        enfor = ac2.checkbox("Enforcamento")
+
+        st.markdown("##### Agressor e contexto")
+        cc1, cc2, cc3, cc4 = st.columns(4)
+        alcool = cc1.checkbox("Uso de álcool pelo agressor")
+        def_trans = cc2.checkbox("Deficiência/transtorno")
+        circ_lesao = cc3.checkbox("Lesão em contexto familiar")
+        autor_sexo = cc4.selectbox("Sexo do autor", CATEGORICAL_OPTIONS["AUTOR_SEXO"], index=3)
+
+        st.markdown("##### Dados da vítima")
+        dc1, dc2, dc3, dc4 = st.columns(4)
+        sit_conjug = dc1.selectbox("Situação conjugal", CATEGORICAL_OPTIONS["SIT_CONJUG"])
+        escolaridade = dc2.selectbox("Escolaridade", CATEGORICAL_OPTIONS["ESCOLARIDADE"])
+        cicl_vid = dc3.selectbox("Ciclo de vida", CATEGORICAL_OPTIONS["CICL_VID"], index=4)
+        sg_uf = dc4.selectbox("UF", CATEGORICAL_OPTIONS["SG_UF"], index=25)
+
+        st.markdown("##### Ocorrência")
+        dia_semana = st.selectbox("Dia da semana", CATEGORICAL_OPTIONS["DIA_SEMANA_OCOR"])
 
         submitted = st.form_submit_button("Avaliar risco individual", type="primary")
 
     if submitted:
-        row = build_prediction_row(
-            expected_features, idade, relacao, viol_psico, ameaca, alcool
-        )
+        binary_vals = {
+            "AG_AMEACA": ameaca,
+            "AG_ENFOR": enfor,
+            "AUTOR_ALCO": alcool,
+            "VIOL_PSICO": viol_psico,
+            "VIOL_FISIC": viol_fisic,
+            "VIOL_FINAN": viol_finan,
+            "VIOL_SEXU": viol_sexu,
+            "REL_PARCEIRO_INTIMO": rel_parceiro,
+            "REL_FAMILIAR": rel_familiar,
+            "REL_CONHECIDO": rel_conhecido,
+            "REL_INSTITUCIONAL": rel_institucional,
+            "REL_OUTROS_FLAG": rel_outros,
+            "DEF_TRANS": def_trans,
+            "CIRC_LESAO_FAMILIA": circ_lesao,
+        }
+        categorical_vals = {
+            "SIT_CONJUG": sit_conjug,
+            "ESCOLARIDADE": escolaridade,
+            "AUTOR_SEXO": autor_sexo,
+            "CICL_VID": cicl_vid,
+            "SG_UF": sg_uf,
+            "DIA_SEMANA_OCOR": dia_semana,
+        }
+        row = build_prediction_row(expected_features, binary_vals, categorical_vals)
         data = pd.DataFrame([row], columns=expected_features)
 
         prob = model.predict_proba(data)[0][1]
@@ -167,10 +235,20 @@ if page == "Simulação de Risco":
         st.subheader("Principais fatores (SHAP)")
         st.dataframe(pd.DataFrame(top_features), width="stretch")
 
-        st.subheader("Explicação com IA")
-        st.info("Explicação com IA desativada temporariamente para testes locais.")
-        # explanation = explain_case(prob, top_features)
-        # st.write(explanation)
+        st.subheader("Orientação assistida por IA")
+        with st.spinner("Gerando orientação..."):
+            import importlib
+            import src.llm.llm_explainer as _llm_mod
+            importlib.reload(_llm_mod)
+            result = _llm_mod.explain_case(prob, top_features)
+        if isinstance(result, tuple) and len(result) == 2:
+            summary, details = result
+        else:
+            summary, details = str(result), None
+        st.info(summary, icon="⚠️")
+        if details:
+            with st.expander("Mais informações sobre os fatores"):
+                st.markdown(details)
 
 # ── Página: Detalhes do Modelo ────────────────────────────────────────────────
 
@@ -255,7 +333,7 @@ elif page == "Avaliação e Equidade":
         group_metrics = artifact.get("group_metrics", {})
 
         if not group_metrics:
-            st.warning("Nenhuma métrica de grupo foi encontrada no artifact salvo.")
+            st.warning("Nenhuma métrica de grupo foi encontrada no artefato salvo.")
         else:
             summary = group_metrics.get("_summary", {})
             groups_only = {k: v for k, v in group_metrics.items() if k != "_summary"}
@@ -276,10 +354,20 @@ elif page == "Avaliação e Equidade":
                 df_groups = pd.DataFrame(rows)
 
                 preferred_columns = [
-                    "grupo", "size", "recall", "specificity",
-                    "precision", "f1", "tn", "fp", "fn", "tp",
+                    "grupo",
+                    "size",
+                    "recall",
+                    "specificity",
+                    "precision",
+                    "f1",
+                    "tn",
+                    "fp",
+                    "fn",
+                    "tp",
                 ]
-                existing_columns = [c for c in preferred_columns if c in df_groups.columns]
+                existing_columns = [
+                    c for c in preferred_columns if c in df_groups.columns
+                ]
                 df_groups = df_groups[existing_columns]
 
                 st.dataframe(df_groups, width="stretch", hide_index=True)
@@ -293,7 +381,10 @@ elif page == "Avaliação e Equidade":
                         st.bar_chart(chart_df)
 
                 with col_s:
-                    if "specificity" in df_groups.columns and "grupo" in df_groups.columns:
+                    if (
+                        "specificity" in df_groups.columns
+                        and "grupo" in df_groups.columns
+                    ):
                         st.markdown("#### Specificity por grupo")
                         chart_df = df_groups.set_index("grupo")[["specificity"]]
                         st.bar_chart(chart_df)
@@ -321,7 +412,10 @@ elif page == "Comparação de Experimentos":
             st.bar_chart(chart_df)
 
     with col_c2:
-        if "recall_gap" in comparison_df.columns and "experiment" in comparison_df.columns:
+        if (
+            "recall_gap" in comparison_df.columns
+            and "experiment" in comparison_df.columns
+        ):
             st.markdown("### Recall gap (desigualdade)")
             chart_df = comparison_df.set_index("experiment")[["recall_gap"]]
             st.bar_chart(chart_df)

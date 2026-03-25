@@ -46,17 +46,17 @@ Na raiz do repositório (com o ambiente virtual ativo e `df_preprocessed.parquet
 python src/optimize_ga.py
 ```
 
-### Notebooks
-
-Abra e execute `notebooks/shap_random_forest_violencia_mulher.ipynb` no Jupyter ou VS Code (kernel apontando para o `.venv`).
-
 ### Aplicação Streamlit
 
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
-O app permite escolher entre variantes de modelo em `models/` (conforme arquivos `.pkl` presentes no seu clone).
+O app permite escolher entre variantes de modelo em `models/` (conforme arquivos `.pkl` gerados pela execução do `src/optimize_ga.py`).
+
+### Notebooks
+
+Abra e execute `notebooks/shap_random_forest_violencia_mulher.ipynb` no Jupyter ou VS Code (kernel apontando para o `.venv`).
 
 ## Integrantes
 
