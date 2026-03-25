@@ -1,5 +1,9 @@
 # Relatório Técnico — Otimização do Modelo Preditor de Recorrência de Violência contra a Mulher
 
+[Link do Repositório no Github](https://github.com/fiap-ssp-2025/tech-challenge-2.git)
+
+[Link do Vídeo Explicatório](https://youtu.be/ypwzWRyV6jU)
+
 **Projeto 1 — Otimização de Modelos para Saúde da Mulher**
 FIAP — Pós-graduação em IA para Devs · Tech Challenge Fase 2
 Grupo SSPDF
@@ -249,8 +253,8 @@ A explicabilidade do modelo foi implementada via **SHAP (SHapley Additive exPlan
 
 Extraída do notebook `notebooks/shap_random_forest_violencia_mulher.ipynb`:
 
-| Pos. | Feature               | Mean   | SHAP |     |
-| ---- | --------------------- | ------ | ---- | --- |
+| Pos. | Feature               | Mean   |
+| ---- | --------------------- | ------ |
 | 1    | `REL_PARCEIRO_INTIMO` | 0.0781 |
 | 2    | `REL_CONHECIDO`       | 0.0747 |
 | 3    | `AG_AMEACA`           | 0.0428 |
