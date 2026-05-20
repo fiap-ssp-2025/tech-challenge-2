@@ -7,3 +7,10 @@ openai>=1.0.0
 python-dotenv>=1.0.0
 matplotlib>=3.7.0
 pymongo>=4.6.0
+langgraph
+langchain
+langchain-openai
+typing_extensions
+grandalf
+faiss-cpu
+openpyxl>=3.1.0

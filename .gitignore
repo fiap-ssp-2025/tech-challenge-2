@@ -20,3 +20,6 @@ models/*.pkl
 
 #Environment variables
 .env
+
+# Dados sensíveis (Diretório Dados_Treinament)
+Dados_Treinamento/
