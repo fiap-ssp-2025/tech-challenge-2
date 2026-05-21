@@ -23,3 +23,5 @@ models/*.pkl
 
 # Dados sensíveis (Diretório Dados_Treinament)
 Dados_Treinamento/
+data/Dados_Treinamento/
+data/processed/finetune/

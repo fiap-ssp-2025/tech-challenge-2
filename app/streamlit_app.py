@@ -23,15 +23,22 @@ BASE_PATH = Path(__file__).resolve().parent.parent
 MODELS_DIR = BASE_PATH / "models"
 
 pkl_files = sorted(MODELS_DIR.glob("random_forest_*.pkl"))
+text_model_path = MODELS_DIR / "text_risk_classifier.pkl"
 
-if not pkl_files:
+available_models = list(pkl_files)
+if text_model_path.exists():
+    available_models.append(text_model_path)
+
+if not available_models:
     st.error("Nenhum modelo encontrado em models/")
     st.stop()
 
-model_names = {
-    f.stem.replace("random_forest_", "").replace("_", " ").title(): f.name
-    for f in pkl_files
-}
+model_names = {}
+for model_path in available_models:
+    if model_path.name == "text_risk_classifier.pkl":
+        model_names["Classificador Textual Local"] = model_path.name
+    else:
+        model_names[model_path.stem.replace("random_forest_", "").replace("_", " ").title()] = model_path.name
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
@@ -48,6 +55,7 @@ with st.sidebar:
         "Seção",
         [
             "Simulação de Risco",
+            "Classificação por Texto",
             "Detalhes do Modelo",
             "Avaliação e Equidade",
             "Comparação de Experimentos",
@@ -73,7 +81,8 @@ artifact_path = MODELS_DIR / model_file
 artifact = joblib.load(artifact_path)
 
 model = artifact["model"]
-expected_features = artifact["features"]
+is_text_model = "features" not in artifact
+expected_features = artifact.get("features", [])
 
 
 # ── Funções auxiliares ────────────────────────────────────────────────────────
@@ -127,6 +136,27 @@ def build_prediction_row(expected_features, binary_vals, categorical_vals):
     return row
 
 
+def predict_text_risk(text_input):
+    clean_text = str(text_input or "").strip()
+    if not clean_text:
+        st.warning("Digite um texto para classificar.")
+        return
+
+    probabilities = model.predict_proba([clean_text])[0]
+    classes = list(model.named_steps["clf"].classes_)
+    best_index = int(np.argmax(probabilities))
+
+    st.metric("Classe prevista", classes[best_index])
+    st.metric("Confianca", f"{probabilities[best_index]:.2%}")
+
+    ranking_df = pd.DataFrame(
+        sorted(zip(classes, probabilities), key=lambda item: item[1], reverse=True),
+        columns=["classe", "probabilidade"],
+    )
+    ranking_df["probabilidade"] = ranking_df["probabilidade"].map(lambda value: f"{value:.2%}")
+    st.dataframe(ranking_df, width="stretch", hide_index=True)
+
+
 # ── Página: Simulação de Risco ────────────────────────────────────────────────
 
 if page == "Simulação de Risco":
@@ -136,119 +166,142 @@ if page == "Simulação de Risco":
         "Preencha os dados abaixo e clique em **Avaliar** para obter a predição."
     )
 
-    with st.form("form_simulacao"):
-        st.markdown("##### Relação com o agressor")
-        rc1, rc2, rc3 = st.columns(3)
-        rel_parceiro = rc1.checkbox("Parceiro íntimo")
-        rel_familiar = rc1.checkbox("Familiar")
-        rel_conhecido = rc2.checkbox("Conhecido")
-        rel_institucional = rc2.checkbox("Institucional")
-        rel_outros = rc3.checkbox("Outros")
+    if is_text_model:
+        text_input = st.text_area(
+            "Digite a narrativa",
+            height=220,
+            placeholder="Ex.: Minha esposa tem me xingado e ameaçado de morte...",
+        )
+        if st.button("Classificar texto", type="primary"):
+            predict_text_risk(text_input)
+    else:
+        with st.form("form_simulacao"):
+            st.markdown("##### Relação com o agressor")
+            rc1, rc2, rc3 = st.columns(3)
+            rel_parceiro = rc1.checkbox("Parceiro íntimo")
+            rel_familiar = rc1.checkbox("Familiar")
+            rel_conhecido = rc2.checkbox("Conhecido")
+            rel_institucional = rc2.checkbox("Institucional")
+            rel_outros = rc3.checkbox("Outros")
 
-        st.markdown("##### Tipos de violência")
-        vc1, vc2, vc3, vc4 = st.columns(4)
-        viol_psico = vc1.checkbox("Psicológica")
-        viol_fisic = vc2.checkbox("Física")
-        viol_finan = vc3.checkbox("Financeira")
-        viol_sexu = vc4.checkbox("Sexual")
+            st.markdown("##### Tipos de violência")
+            vc1, vc2, vc3, vc4 = st.columns(4)
+            viol_psico = vc1.checkbox("Psicológica")
+            viol_fisic = vc2.checkbox("Física")
+            viol_finan = vc3.checkbox("Financeira")
+            viol_sexu = vc4.checkbox("Sexual")
 
-        st.markdown("##### Meios de agressão")
-        ac1, ac2 = st.columns(2)
-        ameaca = ac1.checkbox("Ameaça")
-        enfor = ac2.checkbox("Enforcamento")
+            st.markdown("##### Meios de agressão")
+            ac1, ac2 = st.columns(2)
+            ameaca = ac1.checkbox("Ameaça")
+            enfor = ac2.checkbox("Enforcamento")
 
-        st.markdown("##### Agressor e contexto")
-        cc1, cc2, cc3, cc4 = st.columns(4)
-        alcool = cc1.checkbox("Uso de álcool pelo agressor")
-        def_trans = cc2.checkbox("Deficiência/transtorno")
-        circ_lesao = cc3.checkbox("Lesão em contexto familiar")
-        autor_sexo = cc4.selectbox("Sexo do autor", CATEGORICAL_OPTIONS["AUTOR_SEXO"], index=3)
+            st.markdown("##### Agressor e contexto")
+            cc1, cc2, cc3, cc4 = st.columns(4)
+            alcool = cc1.checkbox("Uso de álcool pelo agressor")
+            def_trans = cc2.checkbox("Deficiência/transtorno")
+            circ_lesao = cc3.checkbox("Lesão em contexto familiar")
+            autor_sexo = cc4.selectbox("Sexo do autor", CATEGORICAL_OPTIONS["AUTOR_SEXO"], index=3)
 
-        st.markdown("##### Dados da vítima")
-        dc1, dc2, dc3, dc4 = st.columns(4)
-        sit_conjug = dc1.selectbox("Situação conjugal", CATEGORICAL_OPTIONS["SIT_CONJUG"])
-        escolaridade = dc2.selectbox("Escolaridade", CATEGORICAL_OPTIONS["ESCOLARIDADE"])
-        cicl_vid = dc3.selectbox("Ciclo de vida", CATEGORICAL_OPTIONS["CICL_VID"], index=4)
-        sg_uf = dc4.selectbox("UF", CATEGORICAL_OPTIONS["SG_UF"], index=25)
+            st.markdown("##### Dados da vítima")
+            dc1, dc2, dc3, dc4 = st.columns(4)
+            sit_conjug = dc1.selectbox("Situação conjugal", CATEGORICAL_OPTIONS["SIT_CONJUG"])
+            escolaridade = dc2.selectbox("Escolaridade", CATEGORICAL_OPTIONS["ESCOLARIDADE"])
+            cicl_vid = dc3.selectbox("Ciclo de vida", CATEGORICAL_OPTIONS["CICL_VID"], index=4)
+            sg_uf = dc4.selectbox("UF", CATEGORICAL_OPTIONS["SG_UF"], index=25)
 
-        st.markdown("##### Ocorrência")
-        dia_semana = st.selectbox("Dia da semana", CATEGORICAL_OPTIONS["DIA_SEMANA_OCOR"])
+            st.markdown("##### Ocorrência")
+            dia_semana = st.selectbox("Dia da semana", CATEGORICAL_OPTIONS["DIA_SEMANA_OCOR"])
 
-        submitted = st.form_submit_button("Avaliar risco individual", type="primary")
+            submitted = st.form_submit_button("Avaliar risco individual", type="primary")
 
-    if submitted:
-        binary_vals = {
-            "AG_AMEACA": ameaca,
-            "AG_ENFOR": enfor,
-            "AUTOR_ALCO": alcool,
-            "VIOL_PSICO": viol_psico,
-            "VIOL_FISIC": viol_fisic,
-            "VIOL_FINAN": viol_finan,
-            "VIOL_SEXU": viol_sexu,
-            "REL_PARCEIRO_INTIMO": rel_parceiro,
-            "REL_FAMILIAR": rel_familiar,
-            "REL_CONHECIDO": rel_conhecido,
-            "REL_INSTITUCIONAL": rel_institucional,
-            "REL_OUTROS_FLAG": rel_outros,
-            "DEF_TRANS": def_trans,
-            "CIRC_LESAO_FAMILIA": circ_lesao,
-        }
-        categorical_vals = {
-            "SIT_CONJUG": sit_conjug,
-            "ESCOLARIDADE": escolaridade,
-            "AUTOR_SEXO": autor_sexo,
-            "CICL_VID": cicl_vid,
-            "SG_UF": sg_uf,
-            "DIA_SEMANA_OCOR": dia_semana,
-        }
-        row = build_prediction_row(expected_features, binary_vals, categorical_vals)
-        data = pd.DataFrame([row], columns=expected_features)
-
-        prob = model.predict_proba(data)[0][1]
-
-        if prob >= 0.7:
-            st.error(f"Probabilidade de recorrência: **{prob:.0%}** — Risco alto")
-        elif prob >= 0.4:
-            st.warning(f"Probabilidade de recorrência: **{prob:.0%}** — Risco moderado")
-        else:
-            st.success(f"Probabilidade de recorrência: **{prob:.0%}** — Risco baixo")
-
-        shap_values = get_shap_values(model, data)
-
-        sv = np.asarray(shap_values)
-        sv_row = sv[0] if sv.ndim > 1 else sv
-        sv_row = np.asarray(sv_row).reshape(-1)
-        n_features = len(expected_features)
-
-        top_idx = [
-            int(i) for i in np.argsort(np.abs(sv_row))[::-1] if int(i) < n_features
-        ][:5]
-
-        top_features = [
-            {
-                "feature": expected_features[i],
-                "impacto_shap": float(np.asarray(sv_row[i]).item()),
+        if submitted:
+            binary_vals = {
+                "AG_AMEACA": ameaca,
+                "AG_ENFOR": enfor,
+                "AUTOR_ALCO": alcool,
+                "VIOL_PSICO": viol_psico,
+                "VIOL_FISIC": viol_fisic,
+                "VIOL_FINAN": viol_finan,
+                "VIOL_SEXU": viol_sexu,
+                "REL_PARCEIRO_INTIMO": rel_parceiro,
+                "REL_FAMILIAR": rel_familiar,
+                "REL_CONHECIDO": rel_conhecido,
+                "REL_INSTITUCIONAL": rel_institucional,
+                "REL_OUTROS_FLAG": rel_outros,
+                "DEF_TRANS": def_trans,
+                "CIRC_LESAO_FAMILIA": circ_lesao,
             }
-            for i in top_idx
-        ]
+            categorical_vals = {
+                "SIT_CONJUG": sit_conjug,
+                "ESCOLARIDADE": escolaridade,
+                "AUTOR_SEXO": autor_sexo,
+                "CICL_VID": cicl_vid,
+                "SG_UF": sg_uf,
+                "DIA_SEMANA_OCOR": dia_semana,
+            }
+            row = build_prediction_row(expected_features, binary_vals, categorical_vals)
+            data = pd.DataFrame([row], columns=expected_features)
 
-        st.subheader("Principais fatores (SHAP)")
-        st.dataframe(pd.DataFrame(top_features), width="stretch")
+            prob = model.predict_proba(data)[0][1]
 
-        st.subheader("Orientação assistida por IA")
-        with st.spinner("Gerando orientação..."):
-            import importlib
-            import src.llm.llm_explainer as _llm_mod
-            importlib.reload(_llm_mod)
-            result = _llm_mod.explain_case(prob, top_features)
-        if isinstance(result, tuple) and len(result) == 2:
-            summary, details = result
-        else:
-            summary, details = str(result), None
-        st.info(summary, icon="⚠️")
-        if details:
-            with st.expander("Mais informações sobre os fatores"):
-                st.markdown(details)
+            if prob >= 0.7:
+                st.error(f"Probabilidade de recorrência: **{prob:.0%}** — Risco alto")
+            elif prob >= 0.4:
+                st.warning(f"Probabilidade de recorrência: **{prob:.0%}** — Risco moderado")
+            else:
+                st.success(f"Probabilidade de recorrência: **{prob:.0%}** — Risco baixo")
+
+            shap_values = get_shap_values(model, data)
+
+            sv = np.asarray(shap_values)
+            sv_row = sv[0] if sv.ndim > 1 else sv
+            sv_row = np.asarray(sv_row).reshape(-1)
+            n_features = len(expected_features)
+
+            top_idx = [
+                int(i) for i in np.argsort(np.abs(sv_row))[::-1] if int(i) < n_features
+            ][:5]
+
+            top_features = [
+                {
+                    "feature": expected_features[i],
+                    "impacto_shap": float(np.asarray(sv_row[i]).item()),
+                }
+                for i in top_idx
+            ]
+
+            st.subheader("Principais fatores (SHAP)")
+            st.dataframe(pd.DataFrame(top_features), width="stretch")
+
+            st.subheader("Orientação assistida por IA")
+            with st.spinner("Gerando orientação..."):
+                import importlib
+                import src.llm.llm_explainer as _llm_mod
+                importlib.reload(_llm_mod)
+                result = _llm_mod.explain_case(prob, top_features)
+            if isinstance(result, tuple) and len(result) == 2:
+                summary, details = result
+            else:
+                summary, details = str(result), None
+            st.info(summary, icon="⚠️")
+            if details:
+                with st.expander("Mais informações sobre os fatores"):
+                    st.markdown(details)
+
+elif page == "Classificação por Texto":
+    st.title("Classificação por Texto")
+    if not is_text_model:
+        st.info("Selecione o modelo textual local para usar esta seção.")
+    else:
+        st.markdown("Digite uma narrativa e veja a classe prevista pelo modelo treinado localmente.")
+        text_input = st.text_area(
+            "Narrativa",
+            height=240,
+            placeholder="Ex.: Minha esposa tem me xingado e ameaçado de morte...",
+        )
+        if st.button("Classificar narrativa", type="primary"):
+            predict_text_risk(text_input)
 
 # ── Página: Detalhes do Modelo ────────────────────────────────────────────────
 
@@ -261,23 +314,38 @@ elif page == "Detalhes do Modelo":
         col1, col2 = st.columns(2)
 
         with col1:
-            st.subheader("Hiperparâmetros")
-            params = artifact.get("params", {})
-            if isinstance(params, str):
-                st.code(params)
+            if is_text_model:
+                st.subheader("Configuração do modelo")
+                st.json(
+                    {
+                        "vectorizer": "TfidfVectorizer",
+                        "classifier": "LogisticRegression",
+                        "class_order": artifact.get("class_order", []),
+                        "train_rows": artifact.get("train_rows"),
+                        "val_rows": artifact.get("val_rows"),
+                    }
+                )
             else:
-                st.json(params)
+                st.subheader("Hiperparâmetros")
+                params = artifact.get("params", {})
+                if isinstance(params, str):
+                    st.code(params)
+                else:
+                    st.json(params)
 
         with col2:
             st.subheader("Informações gerais")
             info = {
-                "fitness_mode": artifact.get("fitness_mode", "não informado"),
-                "fitness": artifact.get("fitness", "não informado"),
                 "arquivo": model_file,
             }
-            ga_config = artifact.get("ga_config")
-            if ga_config:
-                info["ga_config"] = ga_config
+            if is_text_model:
+                info["tipo"] = "classificador textual local"
+            else:
+                info["fitness_mode"] = artifact.get("fitness_mode", "não informado")
+                info["fitness"] = artifact.get("fitness", "não informado")
+                ga_config = artifact.get("ga_config")
+                if ga_config:
+                    info["ga_config"] = ga_config
             st.json(info)
 
     with tab_metrics:
@@ -285,20 +353,30 @@ elif page == "Detalhes do Modelo":
 
         with col_m1:
             st.subheader("Métricas do modelo salvo")
-            st.json(artifact.get("metrics", {}))
+            if is_text_model:
+                st.json(artifact.get("metrics", {}))
+            else:
+                st.json(artifact.get("metrics", {}))
 
         with col_m2:
             st.subheader("Métricas durante a busca")
-            search_metrics = artifact.get("search_metrics")
-            if search_metrics:
-                st.json(search_metrics)
+            if is_text_model:
+                st.info("Modelo textual local não usa busca genética.")
             else:
-                st.info("Modelo baseline — sem busca por hiperparâmetros.")
+                search_metrics = artifact.get("search_metrics")
+                if search_metrics:
+                    st.json(search_metrics)
+                else:
+                    st.info("Modelo baseline — sem busca por hiperparâmetros.")
 
 # ── Página: Avaliação e Equidade ──────────────────────────────────────────────
 
 elif page == "Avaliação e Equidade":
     st.title(f"Avaliação — {model_label}")
+
+    if is_text_model:
+        st.info("Equidade e matriz de confusão detalhada estão disponíveis apenas para os modelos tabulares.")
+        st.stop()
 
     tab_cm, tab_equity = st.tabs(["Matriz de Confusão", "Equidade por Grupo"])
 

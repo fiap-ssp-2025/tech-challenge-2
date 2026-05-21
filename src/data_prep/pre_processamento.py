@@ -8,6 +8,9 @@ df = pd.read_excel("data/Dados_Treinamento/DEAM2026.xlsx")
 # Eliminar linhas campo HISTÓRICO = BLOQUEADO
 df = df[df["Histórico"] != "BLOQUEADO"]
 
+# Eliminar linhas campo Natureza = Em apuração
+df = df[df["Natureza Padronizada"] != "Em apuração"]
+
 # Manter apenas um registro com mesmo:
 # Ano de Registro, Unidade Policial de Registro, Número e Aditamento
 df = df.drop_duplicates(
@@ -23,6 +26,7 @@ df = (
 
 # eliminar colunas desnecessárias (depois da deduplicação)
 colunas_para_eliminar = [
+    "Unidade Policial de Registro", "Número", "Aditamento", "Crime Tentado (S/N)?", "Unidade de Apuração",
     "Sequencial", "Cd.Ocorrência", "Ano de Registro", "Cd.Unidade Registro",
     "Unidade Móvel", "Data do Registro", "Ano do Fato", "Data Início do Fato",
     "Flagrante (S/N)?", "Cd.Natureza", "Natureza Padronizada", "Cidade do Endereço do Fato",
@@ -32,10 +36,11 @@ colunas_para_eliminar = [
     "Data Instauração", "Cd. Órgão Proced.", "Órgão Procedimento", "Número Procedimento",
     "Cd.Tipo Proced.", "Tipo Procedimento", "TCNet?(Sim/Não)", "Tipo Instauração",
     "Data relatamento", "Nome Envolvido Proced", "Número do processo",
-    "Órgão distribuição", "Retombamento SIM_NÂO?", "Data Indiciamento", "Código Envolvido Proced"
+    "Órgão distribuição", "Retombamento SIM_NÂO?", "Data Indiciamento", "Código Envolvido Proced",
+    "Incidência", "Incidência combinada"
 ]
 
 df = df.drop(columns=colunas_para_eliminar, errors="ignore")
 
 # Salvar o arquivo resultante
-df.to_excel("data/Dados_Treinamento/DEAM2026_preprocessado.xlsx", index=False)
+df.to_excel("data/Dados_Treinamento/DEAM2026_preprocessadoII.xlsx", index=False)
