@@ -1,6 +1,6 @@
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
-
+from src.guardrails.safety_guardrails import validate_response, add_safety_notice
 
 class SafetyState(TypedDict):
     user_input: str
@@ -73,11 +73,20 @@ Orientação inicial:
 - Avaliar necessidade de encaminhamento
 - Em caso de risco imediato, procurar atendimento emergencial
 
-⚠️ Este sistema não substitui atendimento profissional especializado.
+Fonte: regras internas de segurança e acolhimento.
 """
 
-    return {"response": response}
+    validation = validate_response(response)
 
+    if not validation["approved"]:
+        response = (
+            "A resposta foi bloqueada pelo módulo de segurança por conter "
+            "orientação inadequada."
+        )
+
+    response = add_safety_notice(response)
+
+    return {"response": response}
 
 def build_graph():
 
