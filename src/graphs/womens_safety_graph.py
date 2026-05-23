@@ -123,13 +123,20 @@ def retrieve_protocol_context(state: SafetyState):
         "deteccao_violencia_contra_mulher": [
             "data/protocols/protocolo_violencia.txt",
             "data/protocols/lei_maria_da_penha.txt",
+            "data/protocols/lei_maria_da_penha_resumo.txt",
+            "data/protocols/tipos_violencia_maria_da_penha.txt",
+            "data/protocols/medidas_protetivas.txt",
+            "data/protocols/canais_atendimento_mulher_brasil.txt",
             "data/protocols/canais_apoio_mulher_df.txt",
+            "data/protocols/rede_protecao_mulher_df.txt",
             "data/protocols/protocolo_rede_protecao_df.txt",
             "data/protocols/lgpd_dados_sensiveis.txt",
         ],
         "acolhimento_psicossocial": [
             "data/protocols/protocolo_saude_mental.txt",
+            "data/protocols/canais_atendimento_mulher_brasil.txt",
             "data/protocols/canais_apoio_mulher_df.txt",
+            "data/protocols/rede_protecao_mulher_df.txt",
             "data/protocols/lgpd_dados_sensiveis.txt",
         ],
         "saude_mulher_contextual": [
@@ -138,8 +145,11 @@ def retrieve_protocol_context(state: SafetyState):
         ],
         "orientacao_preventiva": [
             "data/protocols/protocolo_prevencao.txt",
+            "data/protocols/lei_maria_da_penha_resumo.txt",
+            "data/protocols/tipos_violencia_maria_da_penha.txt",
+            "data/protocols/canais_atendimento_mulher_brasil.txt",
             "data/protocols/canais_apoio_mulher_df.txt",
-            "data/protocols/lei_maria_da_penha.txt",
+            "data/protocols/rede_protecao_mulher_df.txt",
         ],
     }
 
