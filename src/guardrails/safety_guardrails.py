@@ -7,8 +7,14 @@ def validate_response(response: str) -> dict:
         "isso não é grave",
         "não conte para ninguém",
         "tome este medicamento",
+        "use este medicamento",
         "prescrevo",
-        "diagnóstico definitivo"
+        "eu prescrevo",
+        "você deve se automedicar",
+        "não acione a polícia",
+        "não procure atendimento",
+        "resolva sozinha",
+        "enfrente o agressor"
     ]
 
     response_lower = response.lower()

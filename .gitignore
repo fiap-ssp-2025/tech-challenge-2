@@ -18,5 +18,8 @@ __pycache__/
 # Modelos treinados (muito grandes para o GitHub)
 models/*.pkl
 
-#Environment variables
+# Chroma DB
+data/chroma_db/
+
+# Environment variables
 .env

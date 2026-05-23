@@ -11,11 +11,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.explain.shap_explainer import get_shap_values
 from src.optimize_ga import load_data
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from src.graphs.womens_safety_graph import build_graph
 
-from src.llm.llm_explainer import explain_case
 
 st.set_page_config(
-    page_title="Avaliação de Risco de Violência Doméstica",
+    page_title="Sistema IA - Proteção da Mulher",
     layout="wide",
 )
 
@@ -36,7 +36,7 @@ model_names = {
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.subheader("Modelo")
+    st.subheader("Modelo preditivo")
     model_label = st.selectbox("Selecione o modelo", list(model_names.keys()))
     st.caption(f"Arquivo: {model_names[model_label]}")
 
@@ -48,6 +48,7 @@ with st.sidebar:
         "Seção",
         [
             "Simulação de Risco",
+            "Assistente Inteligente",
             "Detalhes do Modelo",
             "Avaliação e Equidade",
             "Comparação de Experimentos",
@@ -58,11 +59,11 @@ with st.sidebar:
     with st.expander("Observações metodológicas"):
         st.markdown(
             """
-- **Métricas do modelo salvo**: modelo final no `.pkl`.
-- **Métricas durante a busca**: desempenho durante otimização com algoritmo genético.
-- **Matriz de confusão**: acertos e erros no conjunto de teste.
-- **Equidade por grupo**: variação de desempenho entre faixas de raça.
-- **Comparação**: baseline vs modelos otimizados.
+- **Simulação de Risco**: usa modelo Random Forest treinado na Fase 2.
+- **Assistente Inteligente**: usa LangGraph, RAG, protocolos e guardrails da Fase 3.
+- **SHAP**: mostra fatores que mais influenciaram a predição.
+- **Equidade**: avalia desempenho por grupos.
+- **Auditoria**: registra fluxo, risco e validação de segurança.
 """
         )
 
@@ -77,7 +78,6 @@ expected_features = artifact["features"]
 
 
 # ── Funções auxiliares ────────────────────────────────────────────────────────
-
 
 CATEGORICAL_OPTIONS = {
     "SIT_CONJUG": ["Casado/ União", "Não se aplica", "Separado", "Solteiro", "Viúvo"],
@@ -193,6 +193,7 @@ if page == "Simulação de Risco":
             "DEF_TRANS": def_trans,
             "CIRC_LESAO_FAMILIA": circ_lesao,
         }
+
         categorical_vals = {
             "SIT_CONJUG": sit_conjug,
             "ESCOLARIDADE": escolaridade,
@@ -201,6 +202,7 @@ if page == "Simulação de Risco":
             "SG_UF": sg_uf,
             "DIA_SEMANA_OCOR": dia_semana,
         }
+
         row = build_prediction_row(expected_features, binary_vals, categorical_vals)
         data = pd.DataFrame([row], columns=expected_features)
 
@@ -232,23 +234,130 @@ if page == "Simulação de Risco":
             for i in top_idx
         ]
 
-        st.subheader("Principais fatores (SHAP)")
-        st.dataframe(pd.DataFrame(top_features), width="stretch")
+        st.subheader("Principais fatores explicativos do modelo")
+        st.dataframe(pd.DataFrame(top_features), width="stretch", hide_index=True)
 
         st.subheader("Orientação assistida por IA")
-        with st.spinner("Gerando orientação..."):
+
+        try:
             import importlib
             import src.llm.llm_explainer as _llm_mod
             importlib.reload(_llm_mod)
             result = _llm_mod.explain_case(prob, top_features)
-        if isinstance(result, tuple) and len(result) == 2:
-            summary, details = result
+
+            if isinstance(result, tuple) and len(result) == 2:
+                summary, details = result
+            else:
+                summary, details = str(result), None
+
+            st.info(summary, icon="⚠️")
+
+            if details:
+                with st.expander("Mais informações sobre os fatores"):
+                    st.markdown(details)
+
+        except Exception as e:
+            st.warning("Não foi possível gerar a explicação textual por IA.")
+            st.exception(e)
+
+
+# ── Página: Assistente Inteligente ───────────────────────────────────────────
+
+elif page == "Assistente Inteligente":
+    st.title("Assistente Inteligente para Proteção da Mulher")
+
+    st.markdown(
+        """
+Este módulo representa a **Fase 3** do projeto, integrando LangGraph,
+RAG, protocolos institucionais, legislação, guardrails, explainability
+e auditoria para apoiar a triagem e o encaminhamento de casos envolvendo
+violência contra a mulher.
+"""
+    )
+
+    st.info(
+        "O assistente não substitui profissionais de saúde, segurança pública, "
+        "assistência social ou atendimento de emergência. Ele atua como apoio "
+        "informativo e estruturado à decisão."
+    )
+
+    example = st.selectbox(
+        "Escolha um exemplo ou escreva seu próprio relato:",
+        [
+            "",
+            "Tenho medo do meu parceiro. Ele me ameaça e controla minhas consultas.",
+            "Estou grávida e tive sangramento hoje pela manhã.",
+            "Estou muito ansiosa, chorando muito e sem conseguir dormir.",
+            "Quero saber como prevenir situações de violência e onde buscar orientação.",
+        ],
+    )
+
+    default_text = example if example else ""
+
+    user_input = st.text_area(
+        "Relato do caso",
+        value=default_text,
+        height=180,
+        placeholder="Descreva o caso a ser analisado..."
+    )
+
+    if st.button("Analisar caso com LangGraph", type="primary"):
+        if not user_input.strip():
+            st.warning("Digite um relato para análise.")
+            st.stop()
+
+        with st.spinner("Analisando caso com LangGraph e RAG..."):
+            graph = build_graph()
+            result = graph.invoke({"user_input": user_input})
+
+        st.success("Análise concluída.")
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.metric("Fluxo", result.get("flow_type", "não identificado"))
+
+        with col2:
+            risk = result.get("risk_level", "não informado")
+            st.metric("Risco", risk.upper())
+
+        with col3:
+            validation = result.get("audit_log", {}).get("safety_validation", "não informado")
+            st.metric("Validação", validation.upper())
+
+        risk = result.get("risk_level", "")
+
+        if risk == "crítico":
+            st.error("Risco crítico identificado. Recomenda-se encaminhamento imediato para atendimento especializado ou emergência, conforme o contexto.")
+        elif risk == "alto":
+            st.error("Risco alto identificado. Recomenda-se atenção prioritária e encaminhamento para rede especializada.")
+        elif risk == "moderado":
+            st.warning("Risco moderado identificado. Recomenda-se acolhimento e avaliação profissional.")
         else:
-            summary, details = str(result), None
-        st.info(summary, icon="⚠️")
-        if details:
-            with st.expander("Mais informações sobre os fatores"):
-                st.markdown(details)
+            st.success("Risco baixo identificado com base no relato informado.")
+
+        st.subheader("Fatores considerados")
+        factors = result.get("risk_factors", [])
+
+        if factors:
+            for factor in factors:
+                st.write(f"- {factor}")
+        else:
+            st.write("- Nenhum fator crítico explícito identificado.")
+
+        tab_resp, tab_context, tab_audit = st.tabs(
+            ["Resposta Segura", "Contexto RAG", "Auditoria"]
+        )
+
+        with tab_resp:
+            st.markdown(result.get("response", ""))
+
+        with tab_context:
+            st.markdown(result.get("protocol_context", "Nenhum contexto recuperado."))
+
+        with tab_audit:
+            st.json(result.get("audit_log", {}))
+
 
 # ── Página: Detalhes do Modelo ────────────────────────────────────────────────
 
@@ -294,6 +403,7 @@ elif page == "Detalhes do Modelo":
                 st.json(search_metrics)
             else:
                 st.info("Modelo baseline — sem busca por hiperparâmetros.")
+
 
 # ── Página: Avaliação e Equidade ──────────────────────────────────────────────
 
@@ -365,9 +475,11 @@ elif page == "Avaliação e Equidade":
                     "fn",
                     "tp",
                 ]
+
                 existing_columns = [
                     c for c in preferred_columns if c in df_groups.columns
                 ]
+
                 df_groups = df_groups[existing_columns]
 
                 st.dataframe(df_groups, width="stretch", hide_index=True)
@@ -381,13 +493,11 @@ elif page == "Avaliação e Equidade":
                         st.bar_chart(chart_df)
 
                 with col_s:
-                    if (
-                        "specificity" in df_groups.columns
-                        and "grupo" in df_groups.columns
-                    ):
+                    if "specificity" in df_groups.columns and "grupo" in df_groups.columns:
                         st.markdown("#### Specificity por grupo")
                         chart_df = df_groups.set_index("grupo")[["specificity"]]
                         st.bar_chart(chart_df)
+
 
 # ── Página: Comparação de Experimentos ────────────────────────────────────────
 
@@ -412,10 +522,7 @@ elif page == "Comparação de Experimentos":
             st.bar_chart(chart_df)
 
     with col_c2:
-        if (
-            "recall_gap" in comparison_df.columns
-            and "experiment" in comparison_df.columns
-        ):
+        if "recall_gap" in comparison_df.columns and "experiment" in comparison_df.columns:
             st.markdown("### Recall gap (desigualdade)")
             chart_df = comparison_df.set_index("experiment")[["recall_gap"]]
             st.bar_chart(chart_df)
